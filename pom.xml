@@ -13,7 +13,7 @@
 	<version>2023-09</version>
 	<name>grocery-items-management-application</name>
 	<description>Grocery Items Management Application</description>
-	<package>pom</package>
+	<packaging>pom</packaging>
 	<properties>
 		<java.version>17</java.version>
 	</properties>
