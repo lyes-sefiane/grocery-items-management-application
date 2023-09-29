@@ -40,7 +40,6 @@ public class ExceptionResponse {
 
     private List<ErrorResponse> details;
 
-
     public ExceptionResponse(String message, HttpStatus httpStatus, String path) {
         this.timeStamp = LocalDateTime.now();
         this.httpStatus = httpStatus;
@@ -98,4 +97,59 @@ public class ExceptionResponse {
                 .forEach(this::addError);
     }
 
+    public HttpStatus getHttpStatus() {
+        return httpStatus;
+    }
+
+    public void setHttpStatus(HttpStatus httpStatus) {
+        this.httpStatus = httpStatus;
+    }
+
+    public LocalDateTime getTimeStamp() {
+        return timeStamp;
+    }
+
+    public void setTimeStamp(LocalDateTime timeStamp) {
+        this.timeStamp = timeStamp;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getError() {
+        return error;
+    }
+
+    public void setError(String error) {
+        this.error = error;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public String getPath() {
+        return path;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
+    }
+
+    public List<ErrorResponse> getDetails() {
+        return details;
+    }
+
+    public void setDetails(List<ErrorResponse> details) {
+        this.details = details;
+    }
 }
