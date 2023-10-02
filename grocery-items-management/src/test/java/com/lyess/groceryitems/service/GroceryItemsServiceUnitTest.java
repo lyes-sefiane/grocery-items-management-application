@@ -50,7 +50,6 @@ public class GroceryItemsServiceUnitTest {
         // Then
         GroceryItem savedGroceryItem = groceryItemService.saveGroceryItem(groceryItem);
         assertEquals(savedGroceryItem, groceryItem);
-
     }
 
     @Test
