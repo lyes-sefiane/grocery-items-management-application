@@ -1,0 +1,169 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: grocery-items-management-api-gateway
+  namespace: lsefiane-dev
+  labels:
+    app: grocery-items-management-api-gateway
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: grocery-items-management-api-gateway
+  template:
+    metadata:
+      labels:
+        app: grocery-items-management-api-gateway
+    spec:
+      containers:
+        - name: grocery-items-management-api-gateway
+          image: docker.io/lsefiane/grocery-items-management-api-gateway:1.0
+          imagePullPolicy: Always
+          readinessProbe:
+            timeoutSeconds: 1
+            periodSeconds: 10
+            successThreshold: 1
+            failureThreshold: 3
+            httpGet:
+              scheme: HTTP
+              path: /actuator/health/readiness
+              port: 8080
+              httpHeaders:
+                - name: Host
+                  value: grocery-items-management-api-gateway
+          livenessProbe:
+            httpGet:
+              path: /actuator/health/liveness
+              port: 8080
+              httpHeaders:
+                - name: Host
+                  value: grocery-items-management-api-gateway
+            initialDelaySeconds: 5
+            periodSeconds: 10
+            timeoutSeconds: 5
+          startupProbe:
+            httpGet:
+              path: /actuator/health/liveness
+              port: 8080
+            failureThreshold: 30
+            periodSeconds: 10
+          env:
+            - name: SPRING_PROFILES_ACTIVE
+              valueFrom:
+                configMapKeyRef:
+                  name: grocery-items-management-configmap
+                  key: SPRING_PROFILES_ACTIVE
+
+            - name: SPRING_DATA_REDIS_DATABASE
+              valueFrom:
+                configMapKeyRef:
+                  name: grocery-items-management-configmap
+                  key: SPRING_DATA_REDIS_DATABASE
+
+            - name: SPRING_DATA_REDIS_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: grocery-items-management-configmap
+                  key: SPRING_DATA_REDIS_HOST
+
+            - name: SPRING_DATA_REDIS_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: grocery-items-management-configmap
+                  key: SPRING_DATA_REDIS_PORT
+
+            - name: SPRING_DATA_REDIS_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: grocery-items-management-secret
+                  key: SPRING_DATA_REDIS_PASSWORD
+
+            - name: SPRING_DATA_REDIS_TIMEOUT
+              valueFrom:
+                configMapKeyRef:
+                  name: grocery-items-management-configmap
+                  key: SPRING_DATA_REDIS_TIMEOUT
+
+            - name: SPRING_CLOUD_GATEWAY_ROUTES_0_ID
+              valueFrom:
+                configMapKeyRef:
+                  name: grocery-items-management-configmap
+                  key: SPRING_CLOUD_GATEWAY_ROUTES_0_ID
+
+            - name: SPRING_CLOUD_GATEWAY_ROUTES_0_URI
+              valueFrom:
+                configMapKeyRef:
+                  name: grocery-items-management-configmap
+                  key: SPRING_CLOUD_GATEWAY_ROUTES_0_URI
+
+            - name: SPRING_CLOUD_GATEWAY_ROUTES_0_PREDICATES_0
+              valueFrom:
+                configMapKeyRef:
+                  name: grocery-items-management-configmap
+                  key: SPRING_CLOUD_GATEWAY_ROUTES_0_PREDICATES_0
+
+            - name: SPRING_CLOUD_GATEWAY_ROUTES_0_PREDICATES_1
+              valueFrom:
+                configMapKeyRef:
+                  name: grocery-items-management-configmap
+                  key: SPRING_CLOUD_GATEWAY_ROUTES_0_PREDICATES_1
+
+            - name: SPRING_CLOUD_GATEWAY_ROUTES_0_FILTERS_0_NAME
+              valueFrom:
+                configMapKeyRef:
+                  name: grocery-items-management-configmap
+                  key: SPRING_CLOUD_GATEWAY_ROUTES_0_FILTERS_0_NAME
+
+            - name: SPRING_CLOUD_GATEWAY_ROUTES_0_FILTERS_0_ARGS_REDIS_RATE_LIMITER_REPLENISHRATE
+              valueFrom:
+                configMapKeyRef:
+                  name: grocery-items-management-configmap
+                  key: SPRING_CLOUD_GATEWAY_ROUTES_0_FILTERS_0_ARGS_REDIS_RATE_LIMITER_REPLENISHRATE
+
+            - name: SPRING_CLOUD_GATEWAY_ROUTES_0_FILTERS_0_ARGS_REDIS_RATE_LIMITER_BURSTCAPACITY
+              valueFrom:
+                configMapKeyRef:
+                  name: grocery-items-management-configmap
+                  key: SPRING_CLOUD_GATEWAY_ROUTES_0_FILTERS_0_ARGS_REDIS_RATE_LIMITER_BURSTCAPACITY
+
+            - name: SPRING_CLOUD_GATEWAY_ROUTES_0_FILTERS_0_ARGS_REDIS_RATE_LIMITER_REQUESTEDTOKENS
+              valueFrom:
+                configMapKeyRef:
+                  name: grocery-items-management-configmap
+                  key: SPRING_CLOUD_GATEWAY_ROUTES_0_FILTERS_0_ARGS_REDIS_RATE_LIMITER_REQUESTEDTOKENS
+
+            - name: MANAGEMENT_TRACING_ENABLED
+              valueFrom:
+                configMapKeyRef:
+                  name: grocery-items-management-configmap
+                  key: MANAGEMENT_TRACING_ENABLED
+
+            - name: MANAGEMENT_ZIPKIN_TRACING_ENDPOINT
+              valueFrom:
+                configMapKeyRef:
+                  name: grocery-items-management-configmap
+                  key: MANAGEMENT_ZIPKIN_TRACING_ENDPOINT
+
+            - name: MANAGEMENT_TRACING_SAMPLING_PROBABILITY
+              valueFrom:
+                configMapKeyRef:
+                  name: grocery-items-management-configmap
+                  key: MANAGEMENT_TRACING_SAMPLING_PROBABILITY
+
+            - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_WEB
+              valueFrom:
+                configMapKeyRef:
+                  name: grocery-items-management-configmap
+                  key: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_WEB
+
+            - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_CLOUD_GATEWAY
+              valueFrom:
+                configMapKeyRef:
+                  name: grocery-items-management-configmap
+                  key: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_CLOUD_GATEWAY
+
+            - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_DATA
+              valueFrom:
+                configMapKeyRef:
+                  name: grocery-items-management-configmap
+                  key: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_DATA

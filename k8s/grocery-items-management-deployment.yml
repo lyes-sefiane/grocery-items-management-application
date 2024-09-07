@@ -1,0 +1,134 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: grocery-items-management
+  namespace: lsefiane-dev
+  labels:
+    app: grocery-items-management
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: grocery-items-management
+  template:
+    metadata:
+      labels:
+        app: grocery-items-management
+    spec:
+      containers:
+        - name: grocery-items-management
+          image: docker.io/lsefiane/grocery-items-management:1.0
+          imagePullPolicy: Always
+          readinessProbe:
+            timeoutSeconds: 1
+            periodSeconds: 10
+            successThreshold: 1
+            failureThreshold: 3
+            httpGet:
+              scheme: HTTP
+              path: /groceryitem/api/actuator/health/readiness
+              port: 8080
+              httpHeaders:
+                - name: Host
+                  value: grocery-items-management
+          livenessProbe:
+            httpGet:
+              path: /groceryitem/api/actuator/health/liveness
+              port: 8080
+              httpHeaders:
+                - name: Host
+                  value: grocery-items-management
+            initialDelaySeconds: 5
+            periodSeconds: 10
+            timeoutSeconds: 5
+          startupProbe:
+            httpGet:
+              path: /groceryitem/api/actuator/health/liveness
+              port: 8080
+            failureThreshold: 30
+            periodSeconds: 10
+          env:
+            - name: SPRING_PROFILES_ACTIVE
+              valueFrom:
+                configMapKeyRef:
+                  name: grocery-items-management-configmap
+                  key: SPRING_PROFILES_ACTIVE
+
+            - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_WEB
+              valueFrom:
+                configMapKeyRef:
+                  name: grocery-items-management-configmap
+                  key: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_WEB
+
+            - name: SPRING_DATA_MONGODB_DATABASE
+              valueFrom:
+                configMapKeyRef:
+                  name: grocery-items-management-configmap
+                  key: SPRING_DATA_MONGODB_DATABASE
+
+            - name: SPRING_DATA_MONGODB_URI
+              valueFrom:
+                configMapKeyRef:
+                  name: grocery-items-management-configmap
+                  key: SPRING_DATA_MONGODB_URI
+
+            - name: SPRING_CACHE_TYPE
+              valueFrom:
+                configMapKeyRef:
+                  name: grocery-items-management-configmap
+                  key: SPRING_CACHE_TYPE
+
+            - name: SPRING_CACHE_REDIS_USERNAME
+              valueFrom:
+                configMapKeyRef:
+                  name: grocery-items-management-configmap
+                  key: SPRING_CACHE_REDIS_USERNAME
+
+            - name: SPRING_REDIS_DATABASE
+              valueFrom:
+                configMapKeyRef:
+                  name: grocery-items-management-configmap
+                  key: SPRING_REDIS_DATABASE
+
+            - name: SPRING_DATA_REDIS_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: grocery-items-management-configmap
+                  key: SPRING_DATA_REDIS_HOST
+
+            - name: SPRING_DATA_REDIS_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: grocery-items-management-configmap
+                  key: SPRING_DATA_REDIS_PORT
+
+            - name: SPRING_DATA_REDIS_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: grocery-items-management-secret
+                  key: SPRING_DATA_REDIS_PASSWORD
+
+            - name: SPRING_DATA_REDIS_TIMEOUT
+              valueFrom:
+                configMapKeyRef:
+                  name: grocery-items-management-configmap
+                  key: SPRING_DATA_REDIS_TIMEOUT
+
+            - name: MANAGEMENT_TRACING_ENABLED
+              valueFrom:
+                configMapKeyRef:
+                  name: grocery-items-management-configmap
+                  key: MANAGEMENT_TRACING_ENABLED
+
+            - name: MANAGEMENT_ZIPKIN_TRACING_ENDPOINT
+              valueFrom:
+                configMapKeyRef:
+                  name: grocery-items-management-configmap
+                  key: MANAGEMENT_ZIPKIN_TRACING_ENDPOINT
+
+            - name: MANAGEMENT_TRACING_SAMPLING_PROBABILITY
+              valueFrom:
+                configMapKeyRef:
+                  name: grocery-items-management-configmap
+                  key: MANAGEMENT_TRACING_SAMPLING_PROBABILITY
+
