@@ -5,6 +5,10 @@ import com.lyess.groceryitems.exception.GroceryItemNotFoundException;
 import com.lyess.groceryitems.repository.GroceryItemRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.Caching;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -32,6 +36,7 @@ public class GroceryItemService implements IGroceryItemService {
      * @return List Of GroceryItem
      * @see GroceryItem
      */
+    @Cacheable(cacheNames = "groceryItems")
     @Override
     public List<GroceryItem> findAllGroceryItems() {
         return groceryItemRepository.findAll();
@@ -43,6 +48,7 @@ public class GroceryItemService implements IGroceryItemService {
      * @return GroceryItem
      * @see GroceryItem
      */
+    @Cacheable(cacheNames = "groceryItem", key = "#id")
     @Override
     public GroceryItem findGroceryItem(String id) {
         return findById(id);
@@ -55,6 +61,8 @@ public class GroceryItemService implements IGroceryItemService {
      * @return groceryItem
      * @see GroceryItem
      */
+    @Caching(put = @CachePut(cacheNames = "groceryItem", key = "#groceryItem.id"),
+            evict = @CacheEvict(cacheNames = "groceryItems", allEntries = true))
     @Override
     public GroceryItem saveGroceryItem(GroceryItem groceryItem) {
         return groceryItemRepository.save(groceryItem);
@@ -68,6 +76,8 @@ public class GroceryItemService implements IGroceryItemService {
      * @return GroceryItem
      * @see GroceryItem
      */
+    @Caching(put = @CachePut(cacheNames = "groceryItem", key = "#id"),
+            evict = @CacheEvict(cacheNames = "groceryItems", allEntries = true))
     @Override
     public GroceryItem updateGroceryItem(GroceryItem groceryItem, String id) {
         GroceryItem existingGroceryItem = findById(id);
@@ -80,6 +90,10 @@ public class GroceryItemService implements IGroceryItemService {
      *
      * @param id : Grocery Item Identifier
      */
+    @Caching(evict = {
+            @CacheEvict(cacheNames = "groceryItems", allEntries = true),
+            @CacheEvict(cacheNames = "groceryItem", key = "#id")
+    })
     @Override
     public void deleteGroceryItem(String id) {
         groceryItemRepository.deleteById(id);
