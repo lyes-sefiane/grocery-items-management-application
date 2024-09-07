@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: grocery-items-management-api-gateway
+  namespace: lsefiane-dev
+  labels:
+    app: grocery-items-management-api-gateway
+spec:
+  selector:
+    app: grocery-items-management-api-gateway
+  ports:
+    - name: "8080"
+      port: 8080
+      targetPort: 8080
+  type: ClusterIP

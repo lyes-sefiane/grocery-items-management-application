@@ -1,0 +1,32 @@
+kind: Route
+apiVersion: route.openshift.io/v1
+metadata:
+  name: grocery-items-management-api-gateway
+  namespace: lsefiane-dev
+  labels:
+    app: grocery-items-management-api-gateway
+  annotations:
+    openshift.io/host.generated: 'true'
+spec:
+  host: grocery-items-management-api-gateway-lsefiane-dev.apps.sandbox-m4.g2pi.p1.openshiftapps.com
+  path: /
+  to:
+    kind: Service
+    name: grocery-items-management-api-gateway
+    weight: 100
+  port:
+    targetPort: '8080'
+  tls:
+    termination: edge
+    insecureEdgeTerminationPolicy: Redirect
+  wildcardPolicy: None
+status:
+  ingress:
+    - host: grocery-items-management-api-gateway-lsefiane-dev.apps.sandbox-m4.g2pi.p1.openshiftapps.com
+      routerName: default
+      conditions:
+        - type: Admitted
+          status: 'True'
+          lastTransitionTime: '2024-08-02T16:43:53Z'
+      wildcardPolicy: None
+      routerCanonicalHostname: router-default.apps.sandbox-m4.g2pi.p1.openshiftapps.com
