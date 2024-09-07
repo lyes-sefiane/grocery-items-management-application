@@ -1,79 +1,80 @@
 package com.lyess.groceryitems.domain.entity;
 
-import java.util.Objects;
-
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document
-public class GroceryItem {
+import java.io.Serializable;
+import java.util.Objects;
 
-	@Id
-	private String id;
-	private String name;
-	private int quantity;
-	private String category;
+@Document("grocery-item")
+public class GroceryItem implements Serializable {
 
-	public GroceryItem(String id, String name, int quantity, String category) {
-		this.id = id;
-		this.name = name;
-		this.quantity = quantity;
-		this.category = category;
-	}
+    @Id
+    private String id;
+    private String name;
+    private int quantity;
+    private String category;
 
-	public String getId() {
-		return id;
-	}
+    public GroceryItem(String id, String name, int quantity, String category) {
+        this.id = id;
+        this.name = name;
+        this.quantity = quantity;
+        this.category = category;
+    }
 
-	public void setId(String id) {
-		this.id = id;
-	}
+    public String getId() {
+        return id;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public void setId(String id) {
+        this.id = id;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public int getQuantity() {
-		return quantity;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public void setQuantity(int quantity) {
-		this.quantity = quantity;
-	}
+    public int getQuantity() {
+        return quantity;
+    }
 
-	public String getCategory() {
-		return category;
-	}
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
 
-	public void setCategory(String category) {
-		this.category = category;
-	}
+    public String getCategory() {
+        return category;
+    }
 
-	@Override
-	public int hashCode() {
-		return Objects.hash(category, id, name);
-	}
+    public void setCategory(String category) {
+        this.category = category;
+    }
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		GroceryItem other = (GroceryItem) obj;
-		return Objects.equals(category, other.category) && Objects.equals(id, other.id)
-				&& Objects.equals(name, other.name);
-	}
+    @Override
+    public int hashCode() {
+        return Objects.hash(category, id, name);
+    }
 
-	@Override
-	public String toString() {
-		return "GroceryItem [id=" + id + ", name=" + name + ", quantity=" + quantity + ", category=" + category + "]";
-	}
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        GroceryItem other = (GroceryItem) obj;
+        return Objects.equals(category, other.category) && Objects.equals(id, other.id)
+                && Objects.equals(name, other.name);
+    }
+
+    @Override
+    public String toString() {
+        return "GroceryItem [id=" + id + ", name=" + name + ", quantity=" + quantity + ", category=" + category + "]";
+    }
 
 }
