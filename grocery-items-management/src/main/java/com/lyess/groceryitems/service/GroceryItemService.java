@@ -81,7 +81,7 @@ public class GroceryItemService implements IGroceryItemService {
     @Override
     public GroceryItem updateGroceryItem(GroceryItem groceryItem, String id) {
         GroceryItem existingGroceryItem = findById(id);
-        BeanUtils.copyProperties(groceryItem, existingGroceryItem, id);
+        BeanUtils.copyProperties(groceryItem, existingGroceryItem, "id");
         return saveGroceryItem(existingGroceryItem);
     }
 
@@ -90,10 +90,8 @@ public class GroceryItemService implements IGroceryItemService {
      *
      * @param id : Grocery Item Identifier
      */
-    @Caching(evict = {
-            @CacheEvict(cacheNames = "groceryItems", allEntries = true),
-            @CacheEvict(cacheNames = "groceryItem", key = "#id")
-    })
+    @Caching(evict = { @CacheEvict(cacheNames = "groceryItems", allEntries = true),
+            @CacheEvict(cacheNames = "groceryItem", key = "#id")})
     @Override
     public void deleteGroceryItem(String id) {
         groceryItemRepository.deleteById(id);
