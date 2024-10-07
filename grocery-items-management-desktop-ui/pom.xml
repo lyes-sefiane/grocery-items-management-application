@@ -33,7 +33,7 @@
 	</developers>
 	<properties>
 		<java.version>17</java.version>
-		<javafx.version>11</javafx.version>
+		<javafx.version>22.0.2</javafx.version>
 	</properties>
 	<dependencies>
 		<dependency>
