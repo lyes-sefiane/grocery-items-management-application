@@ -1,0 +1,21 @@
+// {"name": "Dark Chocolate Covered Almonds", "quantity": 1, "category": "snacks"}
+{
+  "namespace": "com.lyess.grocery_items_management_common.domain.dto",
+  "type": "record",
+  "name": "GroceryItemRecord",
+  "fields": [
+    {
+      "name": "name",
+      "type": "string"
+    },
+    {
+      "name": "quantity",
+      "type": "int"
+    },
+    {
+      "name": "category",
+      "type": "string"
+    }
+  ]
+}
+

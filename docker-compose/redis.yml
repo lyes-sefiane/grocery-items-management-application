@@ -1,0 +1,17 @@
+services:
+  redis:
+    image: bitnami/redis:latest
+    container_name: redis
+    restart: unless-stopped
+    expose:
+      - ${REDIS_PORT}
+    networks:
+      - grocery-items-management-application
+    environment:
+      REDIS_PORT_NUMBER: ${REDIS_PORT_NUMBER}
+      REDIS_DATABASE: ${REDIS_DATABASE}
+      REDIS_PASSWORD: ${REDIS_PASSWORD}
+
+
+networks:
+  grocery-items-management-application:
