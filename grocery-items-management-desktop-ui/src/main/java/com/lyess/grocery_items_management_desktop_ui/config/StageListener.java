@@ -1,8 +1,12 @@
 package com.lyess.grocery_items_management_desktop_ui.config;
 
+import com.lyess.grocery_items_management_desktop_ui.alert.AlertMessage;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,6 +14,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationListener;
 import org.springframework.core.io.Resource;
+import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
@@ -28,7 +33,7 @@ public class StageListener implements ApplicationListener<StageReadyEvent> {
     private final ApplicationContext applicationContext;
 
     public StageListener(@Value("${spring.application.ui.title}") String applicationTitle,
-                         @Value("classpath:welcome/main.fxml") Resource fxml, ApplicationContext applicationContext) {
+                         @Value("classpath:/fxml/welcome/main.fxml") Resource fxml, ApplicationContext applicationContext) {
         this.applicationTitle = applicationTitle;
         this.fxml = fxml;
         this.applicationContext = applicationContext;
@@ -36,7 +41,7 @@ public class StageListener implements ApplicationListener<StageReadyEvent> {
     }
 
     @Override
-    public void onApplicationEvent(StageReadyEvent stageReadyEvent) {
+    public void onApplicationEvent(@NonNull StageReadyEvent stageReadyEvent) {
         try {
             Stage stage = stageReadyEvent.getStage();
             URL url = fxml.getURL();
@@ -48,9 +53,10 @@ public class StageListener implements ApplicationListener<StageReadyEvent> {
             stage.setScene(scene);
             stage.setTitle(this.applicationTitle);
             stage.setMaximized(true);
+            stage.getIcons().add(new Image("/images/application-icon.png"));
             stage.show();
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            Platform.runLater(() -> new AlertMessage(Alert.AlertType.ERROR, "Exception", "Message : " + e.getMessage()));
         }
     }
 }

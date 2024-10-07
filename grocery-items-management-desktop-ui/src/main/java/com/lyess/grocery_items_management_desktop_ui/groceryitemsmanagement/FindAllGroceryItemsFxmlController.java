@@ -2,7 +2,6 @@ package com.lyess.grocery_items_management_desktop_ui.groceryitemsmanagement;
 
 
 import com.lyess.grocery_items_management_common.domain.GroceryItemResource;
-import com.lyess.grocery_items_management_desktop_ui.alert.AlertMessage;
 import com.lyess.grocery_items_management_desktop_ui.entities.CustomTableCell;
 import com.lyess.grocery_items_management_desktop_ui.entities.enums.TableCellEnum;
 import com.lyess.grocery_items_management_desktop_ui.entities.enums.TreeItemEnum;
@@ -13,14 +12,15 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.ProgressBar;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
+import javafx.scene.control.TableView;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
-
-import java.io.IOException;
 
 /**
  * @author Lyes Sefiane
@@ -110,12 +110,8 @@ public non-sealed class FindAllGroceryItemsFxmlController extends GroceryItemsMa
     private void editOnAction(CustomTableCell customTableCell) {
         GroceryItemResource groceryItemResource = getTableRowValue(customTableCell);
         logger.info("Editing Item : {}", groceryItemResource);
-        try {
-            applicationContext.getBean(GroceryItemsManagementUiMainFxmlController.class).loadAndDisplayUiBy(TreeItemEnum.UPDATE_GROCERY_ITEM);
-            applicationContext.getBean(UpdateGroceryItemFxmlController.class).initialize(groceryItemResource);
-        } catch (IOException e) {
-            Platform.runLater(() -> new AlertMessage(Alert.AlertType.ERROR, "Exception", "Message : " + e.getMessage()));
-        }
+        applicationContext.getBean(GroceryItemsManagementUiMainFxmlController.class).loadAndDisplayUiBy(TreeItemEnum.UPDATE_GROCERY_ITEM);
+        applicationContext.getBean(UpdateGroceryItemFxmlController.class).initialize(groceryItemResource);
     }
 
     /**
@@ -140,7 +136,7 @@ public non-sealed class FindAllGroceryItemsFxmlController extends GroceryItemsMa
      * @param ignoredEvent: On Click
      */
     @FXML
-    private void insertOnAction(ActionEvent ignoredEvent) throws IOException {
+    private void insertOnAction(ActionEvent ignoredEvent) {
         logger.info("Adding New Item...");
         applicationContext.getBean(GroceryItemsManagementUiMainFxmlController.class).loadAndDisplayUiBy(TreeItemEnum.ADD_GROCERY_ITEM);
     }
