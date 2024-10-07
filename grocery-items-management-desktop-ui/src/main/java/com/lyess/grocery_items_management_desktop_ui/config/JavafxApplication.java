@@ -19,13 +19,10 @@ public class JavafxApplication extends Application {
 
     @Override
     public void init() throws Exception {
-        ApplicationContextInitializer<GenericApplicationContext> initializer = new ApplicationContextInitializer<GenericApplicationContext>() {
-            @Override
-            public void initialize(GenericApplicationContext genericApplicationContext) {
-                genericApplicationContext.registerBean(Application.class, () -> JavafxApplication.this);
-                genericApplicationContext.registerBean(Parameters.class, () -> getParameters());
-                genericApplicationContext.registerBean(HostServices.class, () -> getHostServices());
-            }
+        ApplicationContextInitializer<GenericApplicationContext> initializer = genericApplicationContext -> {
+            genericApplicationContext.registerBean(Application.class, () -> JavafxApplication.this);
+            genericApplicationContext.registerBean(Parameters.class, this::getParameters);
+            genericApplicationContext.registerBean(HostServices.class, this::getHostServices);
         };
 
         this.context = new SpringApplicationBuilder().sources(GroceryItemsManagementDesktopUiApplication.class)

@@ -20,6 +20,7 @@
 	<modules>
 		<module>grocery-items-management</module>
 		<module>grocery-items-management-api-gateway</module>
+		<module>grocery-items-management-common</module>
 		<module>grocery-items-management-desktop-ui</module>
 	</modules>
 
