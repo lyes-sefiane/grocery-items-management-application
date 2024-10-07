@@ -8,11 +8,13 @@ import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
+import org.springframework.hateoas.Link;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.stream.Collectors;
+
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 
 /**
  * Project Name : grocery-items-management-application
@@ -44,7 +46,7 @@ public class GroceryItemRestController {
      */
     @GetMapping
     public List<GroceryItemResource> findAllGroceryItems() {
-        return groceryItemService.findAllGroceryItems().stream().map(GroceryItemResource::new).collect(Collectors.toList());
+        return groceryItemService.findAllGroceryItems().stream().map(groceryItem -> new GroceryItemResource(groceryItem, addLink(groceryItem))).toList();
     }
 
     /**
@@ -58,7 +60,7 @@ public class GroceryItemRestController {
     @RequestMapping("/{id}")
     public GroceryItemResource findGroceryItem(@PathVariable @NotBlank(message = "Grocery Item Should Not Be Blank !") String id) {
         GroceryItem groceryItem = groceryItemService.findGroceryItem(id);
-        return new GroceryItemResource(groceryItem);
+        return new GroceryItemResource(groceryItem, addLink(groceryItem));
     }
 
     /**
@@ -72,7 +74,7 @@ public class GroceryItemRestController {
     @PostMapping
     public GroceryItemResource saveGroceryItem(@RequestBody @Valid GroceryItemRecord groceryItemRecord) {
         GroceryItem groceryItem = groceryItemService.saveGroceryItem(customConverter.convert(groceryItemRecord));
-        return new GroceryItemResource(groceryItem);
+        return new GroceryItemResource(groceryItem, addLink(groceryItem));
     }
 
     /**
@@ -88,7 +90,7 @@ public class GroceryItemRestController {
     public GroceryItemResource updateGroceryItem(@RequestBody @Valid GroceryItemRecord groceryItemRecord, //
                                                  @PathVariable @NotBlank(message = "Grocery Id should Not Be Blank!") String id) {
         GroceryItem groceryItem = groceryItemService.updateGroceryItem(customConverter.convert(groceryItemRecord), id);
-        return new GroceryItemResource(groceryItem);
+        return new GroceryItemResource(groceryItem, addLink(groceryItem));
     }
 
     /**
@@ -99,6 +101,17 @@ public class GroceryItemRestController {
     @DeleteMapping("/{id}")
     public void deleteGroceryItem(@PathVariable @NotBlank(message = "Grocery Id should Not Be Blank!") String id) {
         groceryItemService.deleteGroceryItem(id);
+    }
+
+    /**
+     * Add HATEOAS Link with Self Relation
+     *
+     * @param groceryItem: Entity Response
+     *
+     * @return HATEOAS Link
+     */
+    private Link addLink(GroceryItem groceryItem) {
+        return linkTo(GroceryItemRestController.class).slash(groceryItem.getId()).withSelfRel();
     }
 
 
