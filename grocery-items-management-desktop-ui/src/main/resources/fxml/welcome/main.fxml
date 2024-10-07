@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  Copyright (c) 2015, 2019, Gluon and/or its affiliates.
+  All rights reserved. Use is subject to license terms.
+
+  This file is available and licensed under the following license:
+
+  Redistribution and use in source and binary forms, with or without
+  modification, are permitted provided that the following conditions
+  are met:
+
+  - Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
+  - Redistributions in binary form must reproduce the above copyright
+    notice, this list of conditions and the following disclaimer in
+    the documentation and/or other materials provided with the distribution.
+  - Neither the name of Oracle Corporation nor the names of its
+    contributors may be used to endorse or promote products derived
+    from this software without specific prior written permission.
+
+  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+  A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+  OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+  LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+  DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<?import com.jfoenix.controls.JFXTreeView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.effect.Blend?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.RadialGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+
+<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lyess.grocery_items_management_desktop_ui.welcome.GroceryItemsManagementUiMainFxmlController">
+  <children>
+    <MenuBar VBox.vgrow="NEVER">
+      <menus>
+        <Menu mnemonicParsing="false" text="File">
+          <items>
+            <MenuItem mnemonicParsing="false" onAction="#quitOnAction" text="Quit" />
+          </items>
+        </Menu>
+        <Menu mnemonicParsing="false" text="Help">
+          <items>
+            <MenuItem mnemonicParsing="false" text="About" />
+                  <MenuItem mnemonicParsing="false" text="License" />
+          </items>
+        </Menu>
+      </menus>
+    </MenuBar>
+      <HBox alignment="CENTER" prefHeight="41.0" prefWidth="640.0">
+         <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="17.0" prefWidth="637.0" text="Grocery Items Management Application" textAlignment="CENTER" HBox.hgrow="ALWAYS">
+               <textFill>
+                  <RadialGradient centerX="0.48895027624309395" centerY="0.481042654028436" focusDistance="0.06896551724137923" radius="0.8448275862068966">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color red="0.7631579041481018" green="0.06712962687015533" blue="0.6123517751693726" opacity="0.8500000238418579" />
+                           </color>
+                        </Stop>
+                        <Stop offset="0.006711409395973154">
+                           <color>
+                              <Color red="0.7631579041481018" green="0.06712962687015533" blue="0.6123517751693726" opacity="0.8500000238418579" />
+                           </color>
+                        </Stop>
+                        <Stop offset="0.4786789981993781">
+                           <color>
+                              <Color red="0.4335028827190399" green="0.4276925027370453" blue="0.7763158082962036" opacity="0.8500000238418579" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="0.125" green="0.48303571343421936" blue="0.5" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </RadialGradient>
+               </textFill>
+               <font>
+                  <Font name="Calibri" size="26.0" />
+               </font>
+               <effect>
+                  <Blend />
+               </effect>
+               <padding>
+                  <Insets left="10.0" />
+               </padding></Label>
+         </children>
+      </HBox>
+      <SplitPane dividerPositions="0.28996865203761757" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="310.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+         <items>
+            <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #808080;" SplitPane.resizableWithParent="false">
+               <children>
+                  <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" VBox.vgrow="ALWAYS">
+                     <items>
+                        <VBox fillWidth="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="180.0" prefWidth="180.0" SplitPane.resizableWithParent="false">
+                           <children>
+                              <ImageView fitHeight="179.0" fitWidth="179.0">
+                                 <image>
+                                    <Image url="@../../images/phoenix.png" />
+                                 </image>
+                                 <effect>
+                                    <DropShadow />
+                                 </effect>
+                              </ImageView>
+                           </children>
+                        </VBox>
+                        <VBox prefHeight="187.0" prefWidth="180.0">
+                           <children>
+                              <JFXTreeView fx:id="groceryItemsManagementTreeView" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#groceryItemsManagementTreeViewOnClick" showRoot="false" VBox.vgrow="ALWAYS">
+                                 <padding>
+                                    <Insets top="20.0" />
+                                 </padding></JFXTreeView>
+                           </children>
+                        </VBox>
+                     </items>
+                  </SplitPane>
+               </children>
+            </VBox>
+            <VBox fx:id="subFxmlContainerVBox" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: white;" />
+         </items>
+      </SplitPane>
+      <HBox alignment="CENTER" disable="true" fillHeight="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="24.0" prefWidth="640.0" VBox.vgrow="NEVER">
+         <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="637.0" style="-fx-background-color: white;" text="Copyright © 2024 Lyes Sefiane | CC-BY-NC-ND-4.0" />
+         </children>
+      </HBox>
+  </children>
+</VBox>
