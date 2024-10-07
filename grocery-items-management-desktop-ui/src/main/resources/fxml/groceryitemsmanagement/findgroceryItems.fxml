@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.Font?>
+<VBox alignment="CENTER" focusTraversable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="324.0" prefWidth="478.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lyess.grocery_items_management_desktop_ui.groceryitemsmanagement.FindAllGroceryItemsFxmlController">
+   <children>
+      <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="267.0" text="Grocery Items Summary ">
+         <textFill>
+            <RadialGradient centerX="0.511049723756906" centerY="0.5" focusDistance="-0.02298850574712641" radius="0.7298850574712643">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color red="0.11419346928596497" green="0.1045321673154831" blue="0.6842105388641357" opacity="0.9100000262260437" />
+                     </color>
+                  </Stop>
+                  <Stop offset="0.19463087248322147">
+                     <color>
+                        <Color red="0.11419346928596497" green="0.1045321673154831" blue="0.6842105388641357" opacity="0.9100000262260437" />
+                     </color>
+                  </Stop>
+                  <Stop offset="0.8053691275167784">
+                     <color>
+                        <Color red="0.6165295839309692" green="0.3569079041481018" blue="0.8289473652839661" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="0.6165295839309692" green="0.3569079041481018" blue="0.8289473652839661" />
+                     </color>
+                  </Stop>
+               </stops>
+            </RadialGradient>
+         </textFill>
+         <font>
+            <Font name="Algerian" size="21.0" />
+         </font>
+      </Label>
+      <TableView fx:id="groceryItemsTableView" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0" tableMenuButtonVisible="true" VBox.vgrow="ALWAYS">
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+         <columns>
+            <TableColumn fx:id="id" prefWidth="75.0" text="Id" />
+            <TableColumn fx:id="name" prefWidth="75.0" text="Name" />
+            <TableColumn fx:id="qte" prefWidth="75.0" text="Qte" />
+            <TableColumn fx:id="category" prefWidth="75.0" text="Category" />
+            <TableColumn fx:id="edit" prefWidth="75.0" text="Edit" />
+            <TableColumn fx:id="delete" prefWidth="75.0" text="Delete" />
+         </columns>
+      </TableView>
+      <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="22.0" prefWidth="482.0" VBox.vgrow="NEVER">
+         <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="22.0" prefWidth="260.0" HBox.hgrow="ALWAYS">
+               <graphic>
+                  <ProgressBar fx:id="progressBar" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="22.0" prefWidth="233.0" />
+               </graphic>
+            </Label>
+            <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="22.0" prefWidth="181.0" HBox.hgrow="ALWAYS">
+               <graphic>
+                  <JFXButton onAction="#insertOnAction" prefHeight="24.0" prefWidth="178.0" text="Insert New Grocery Item">
+                     <graphic>
+                        <ImageView fitHeight="33.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../images/icons8-add-list-48.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </JFXButton>
+               </graphic>
+            </Label>
+         </children>
+      </HBox>
+   </children>
+</VBox>

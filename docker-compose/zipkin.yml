@@ -1,0 +1,12 @@
+services:
+  zipkin:
+    image: openzipkin/zipkin:latest
+    container_name: zipkin
+    restart: unless-stopped
+    ports:
+      - ${ZIPKIN_PORT}:${ZIPKIN_PORT}
+    networks:
+      - grocery-items-management-application
+
+networks:
+  grocery-items-management-application:
