@@ -2,12 +2,11 @@ package com.lyess.grocery_items_management_desktop_ui.welcome;
 
 import com.jfoenix.controls.JFXTreeView;
 import com.lyess.grocery_items_management_desktop_ui.alert.AlertMessage;
+import com.lyess.grocery_items_management_desktop_ui.config.FxmlLoader;
 import com.lyess.grocery_items_management_desktop_ui.entities.enums.TreeItemEnum;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TreeItem;
 import javafx.scene.image.Image;
@@ -16,7 +15,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.context.ApplicationContext;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
@@ -43,11 +42,11 @@ public class GroceryItemsManagementUiMainFxmlController {
     @FXML
     private VBox subFxmlContainerVBox;
 
-    private final ApplicationContext applicationContext;
+    private final FxmlLoader fxmlLoader;
 
-    public GroceryItemsManagementUiMainFxmlController(ApplicationContext applicationContext) {
+    public GroceryItemsManagementUiMainFxmlController(FxmlLoader fxmlLoader) {
         logger.info("In GroceryItemsManagementUiMainFxmlController");
-        this.applicationContext = applicationContext;
+        this.fxmlLoader = fxmlLoader;
     }
 
     @FXML
@@ -58,7 +57,7 @@ public class GroceryItemsManagementUiMainFxmlController {
     }
 
     /**
-     *
+     * TreeView Initialization
      */
     private void initTreeView() {
         TreeItem<String> root = new TreeItem<>();
@@ -71,6 +70,11 @@ public class GroceryItemsManagementUiMainFxmlController {
         groceryItemsManagementTreeView.setVisible(true);
     }
 
+    /**
+     * Tree Item on Acton
+     *
+     * @param ignoredEvent : Mouse Event On Click
+     */
     @FXML
     private void groceryItemsManagementTreeViewOnClick(MouseEvent ignoredEvent) {
         TreeItem<String> selectedItem = groceryItemsManagementTreeView.getSelectionModel().getSelectedItem();
@@ -79,6 +83,11 @@ public class GroceryItemsManagementUiMainFxmlController {
         loadAndDisplayUiBy(selectedTreeItemEnum);
     }
 
+    /**
+     * Quit On Action
+     *
+     * @param ignoredEvent : Action Event On Action
+     */
     @FXML
     private void quitOnAction(ActionEvent ignoredEvent) {
         logger.info("Quit ....");
@@ -94,12 +103,9 @@ public class GroceryItemsManagementUiMainFxmlController {
     public void loadAndDisplayUiBy(TreeItemEnum treeItemEnum) {
         try {
             subFxmlContainerVBox.getChildren().clear();
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(treeItemEnum.getFxml()));
-            fxmlLoader.setControllerFactory(applicationContext::getBean);
-            Parent parent = fxmlLoader.load();
-            subFxmlContainerVBox.getChildren().addAll(parent.getChildrenUnmodifiable());
+            subFxmlContainerVBox.getChildren().addAll(fxmlLoader.load(getClass().getResource(treeItemEnum.getFxml())).getChildrenUnmodifiable());
         } catch (IOException e) {
-            Platform.runLater(() -> new AlertMessage(Alert.AlertType.ERROR, "Exception", "Message : " + e.getMessage()));
+            Platform.runLater(() -> new AlertMessage(Alert.AlertType.ERROR, HttpStatus.INTERNAL_SERVER_ERROR.toString(), e.getMessage()));
         }
 
 
