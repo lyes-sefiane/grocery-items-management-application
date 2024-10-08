@@ -94,7 +94,6 @@ public class GroceryItemsManagementUiMainFxmlController {
         Platform.exit();
     }
 
-
     /**
      * Load And Display Sub FXML
      *
@@ -107,7 +106,5 @@ public class GroceryItemsManagementUiMainFxmlController {
         } catch (IOException e) {
             Platform.runLater(() -> new AlertMessage(Alert.AlertType.ERROR, HttpStatus.INTERNAL_SERVER_ERROR.toString(), e.getMessage()));
         }
-
-
     }
 }

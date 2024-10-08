@@ -10,17 +10,18 @@ import com.lyess.grocery_items_management_desktop_ui.welcome.GroceryItemsManagem
 import javafx.application.Platform;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.ProgressBar;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableRow;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
+
+import java.util.function.Predicate;
 
 /**
  * @author Lyes Sefiane
@@ -57,6 +58,9 @@ public non-sealed class FindAllGroceryItemsFxmlController extends GroceryItemsMa
     @FXML
     private ProgressBar progressBar;
 
+    @FXML
+    private TextField filterTextField;
+
     private final GroceryItemsManagementService groceryItemsManagementService;
 
     private final ApplicationContext applicationContext;
@@ -79,8 +83,11 @@ public non-sealed class FindAllGroceryItemsFxmlController extends GroceryItemsMa
         logger.info("In Initialize...");
         setCellValueFactoryTableView();
         initTableView();
+        initFilteredTableRows();
         subscribeToGroceryItemResources();
     }
+
+
     /**
      * Set Cell Value Factory Table View
      */
@@ -172,9 +179,40 @@ public non-sealed class FindAllGroceryItemsFxmlController extends GroceryItemsMa
     private void initTableView() {
         logger.info("In Init Table View...");
         observableList.clear();
-        groceryItemsTableView.setItems(observableList);
+        setTableViewItems(observableList);
     }
 
+    /**
+     * Initialize Table Rows Filter
+     */
+    private void initFilteredTableRows() {
+        FilteredList<GroceryItemResource> filteredObservableList = new FilteredList<>(observableList);
+        filterTextField.textProperty().addListener((observable, oldValue, newValue) -> filteredObservableList.setPredicate(groceryItemResourcePredicate(newValue)));
+        setTableViewItems(filteredObservableList);
+    }
+
+    /**
+     * Grocery Item Resource Predicate
+     *
+     * @param text : Text Written In The Text Field
+     *
+     * @return Grocery Item Resource That Evaluates A Boolean Condition.
+     */
+    private Predicate<GroceryItemResource> groceryItemResourcePredicate(String text) {
+        return groceryItemResource ->
+                groceryItemResource.getGroceryItem().getId().toString().toLowerCase().contains(text.toLowerCase()) ||
+                        groceryItemResource.getGroceryItem().getName().toString().toLowerCase().contains(text.toLowerCase()) ||
+                        groceryItemResource.getGroceryItem().getCategory().toString().toLowerCase().contains(text.toLowerCase());
+    }
+
+    /**
+     * Set Grocery Items In The Table View
+     *
+     * @param items : List of Grocery Item Resources
+     */
+    private void setTableViewItems(ObservableList<GroceryItemResource> items) {
+        groceryItemsTableView.setItems(items);
+    }
 
     /**
      * Subscribe To Grocery Item Resources
