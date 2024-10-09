@@ -1,0 +1,71 @@
+#!/usr/bin/env bash
+
+# This script is licensed under the CC BY-NC-ND 4.0 License.
+# For more information please visit :
+# https://creativecommons.org/licenses/by-nc-nd/4.0/
+
+echo "
+
+  ┏┓             ┳
+  ┃┓┏┓┏┓┏┏┓┏┓┓┏  ┃╋┏┓┏┳┓┏
+  ┗┛┛ ┗┛┗┗ ┛ ┗┫  ┻┗┗ ┛┗┗┛
+  ┳┳┓         ┛          ┳┳┓•            •
+  ┃┃┃┏┓┏┓┏┓┏┓┏┓┏┳┓┏┓┏┓╋  ┃┃┃┓┏┏┓┏┓┏┏┓┏┓┓┏┓┏┏┓
+  ┛ ┗┗┻┛┗┗┻┗┫┗ ┛┗┗┗ ┛┗┗  ┛ ┗┗┗┛ ┗┛┛┗ ┛ ┗┛┗┗┗
+            ┛
+"
+
+declare -a options=(
+	"Start Microservice"
+	"ShutDown Microservice"
+	"quit"
+)
+
+echo
+
+# shellcheck disable=SC2046
+echo $(uname) ": Hi 😊 ! please make a selection."
+
+echo
+
+select option in "${options[@]}"
+
+do
+
+  case ${option} in
+
+    # Choice : 1
+    "Start Microservice")
+          echo "Start Grocery Items Management Application Microservice ...";
+          docker-compose \
+          -f docker-compose/redis.yml \
+          -f docker-compose/zipkin.yml \
+          -f docker-compose/hashicorp-consul.yml \
+          -f docker-compose/grocery-items-management-api-gateway.yml \
+          -f docker-compose/grocery-items-management.yml \
+          --env-file docker-compose/.env up -d
+          break;;
+    # Choice : 2
+    "ShutDown Microservice")
+          echo "ShutDown Start Grocery Items Management Application Microservice ...";
+          docker-compose \
+          -f docker-compose/redis.yml \
+          -f docker-compose/zipkin.yml \
+          -f docker-compose/hashicorp-consul.yml \
+          -f docker-compose/grocery-items-management-api-gateway.yml \
+          -f docker-compose/grocery-items-management.yml \
+          --env-file docker-compose/.env down
+          break;;
+    # Choice : 3
+    quit)
+          # shellcheck disable=SC2046
+          echo $(uname) ": Bye !" ;
+          break;;
+
+    # Choice : Default
+    *)
+          # shellcheck disable=SC2046
+          echo $(uname) ": I'm not sure what that is O.Ô !"
+  esac
+
+done
