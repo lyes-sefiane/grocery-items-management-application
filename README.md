@@ -3,8 +3,61 @@
 ![License](https://img.shields.io/static/v1?label=License&message=CC-BY-NC-ND-4.0&color=green)
 ![GitHub Repo stars](https://img.shields.io/github/stars/lyes-sefiane/grocery-items-management-application?style=social)
 ![GitHub top language](https://img.shields.io/github/languages/top/lyes-sefiane/grocery-items-management-application)
-![GitHub release (latest by date)](https://img.shields.io/github/v/release/lyes-sefiane/grocery-items-management-application)
-![GitHub Release Date](https://img.shields.io/github/release-date/lyes-sefiane/grocery-items-management-application)
+
+## Requirements
+```
+1. Java 17.x.y
+
+2. Maven 3.x.y
+
+3. Docker 3.x.y
+```
+
+## Microservice Deployment to Localhost
+```
+cd grocery-items-management-application/
+
+chmod u+x grocery-items-management-application
+
+./grocery-items-management-application
+
+
+  ┏┓             ┳
+  ┃┓┏┓┏┓┏┏┓┏┓┓┏  ┃╋┏┓┏┳┓┏
+  ┗┛┛ ┗┛┗┗ ┛ ┗┫  ┻┗┗ ┛┗┗┛
+  ┳┳┓         ┛          ┳┳┓•            •
+  ┃┃┃┏┓┏┓┏┓┏┓┏┓┏┳┓┏┓┏┓╋  ┃┃┃┓┏┏┓┏┓┏┏┓┏┓┓┏┓┏┏┓
+  ┛ ┗┗┻┛┗┗┻┗┫┗ ┛┗┗┗ ┛┗┗  ┛ ┗┗┗┛ ┗┛┛┗ ┛ ┗┛┗┗┗
+            ┛
+
+
+MINGW64_NT-10.0-19045 : Hi 😊 ! please make a selection.
+
+1) Start Microservice
+2) ShutDown Microservice
+3) quit
+#? 1
+Start Grocery Items Management Application Microservice ...
+[+] Running 7/7
+ ✔ Network docker-compose_grocery-items-management-application  Created                                                                                  0.2s 
+ ✔ Container redis                                              Started                                                                                  2.6s 
+ ✔ Container zipkin                                             Started                                                                                  2.8s 
+ ✔ Container consul-server                                      Started                                                                                  3.1s 
+ ✔ Container grocery-items-management                           Started                                                                                  4.4s 
+ ✔ Container consul-client                                      Started                                                                                  4.3s 
+ ✔ Container grocery-items-management-api-gateway               Started                                                                                  5.7s 
+```
+
+## Grocery Items Management Application UI
+
+```
+cd grocery-items-management-desktop-ui/
+
+mvn clean install -DskipTests
+
+java -jar target/grocery-items-management-desktop-ui-1.0.0.jar
+
+```
 
 
 # Contributing
