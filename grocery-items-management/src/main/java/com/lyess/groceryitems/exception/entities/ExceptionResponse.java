@@ -3,6 +3,7 @@ package com.lyess.groceryitems.exception.entities;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.ConstraintViolation;
 import org.hibernate.validator.internal.engine.path.PathImpl;
 import org.springframework.http.HttpStatus;
@@ -22,6 +23,7 @@ import java.util.Set;
  * Created : 2023-09-29 11:30 AM
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
+@Schema(accessMode = Schema.AccessMode.READ_ONLY)
 public class ExceptionResponse {
 
     @JsonIgnore
@@ -38,6 +40,7 @@ public class ExceptionResponse {
 
     private String path;
 
+    @Schema(allOf = {ValidationError.class}, implementation = ErrorResponse.class)
     private List<ErrorResponse> details;
 
     public ExceptionResponse(String message, HttpStatus httpStatus, String path) {
