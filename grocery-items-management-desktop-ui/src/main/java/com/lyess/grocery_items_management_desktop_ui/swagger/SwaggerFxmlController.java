@@ -1,7 +1,6 @@
-package com.lyess.grocery_items_management_desktop_ui.license;
+package com.lyess.grocery_items_management_desktop_ui.swagger;
 
 import com.lyess.grocery_items_management_desktop_ui.abstractfxcontroller.LicenseOrSwaggerFxmlContrroller;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
@@ -13,18 +12,17 @@ import org.springframework.stereotype.Component;
  * @since 2024-10-10
  */
 @Component
-public class LicenseFxmlController extends LicenseOrSwaggerFxmlContrroller {
+public class SwaggerFxmlController extends LicenseOrSwaggerFxmlContrroller {
 
-    @Value("${creativecommons.url}")
-    private String creativeCommonsUrl;
+    @Value("${swagger-ui.url}")
+    private String swaggerUiUrl;
 
-    @Autowired
-    public LicenseFxmlController(ApplicationContext applicationContext) {
-       super(applicationContext);
+    public SwaggerFxmlController(ApplicationContext applicationContext) {
+        super(applicationContext);
     }
 
     @Override
     protected String getUrl() {
-        return creativeCommonsUrl;
+        return swaggerUiUrl;
     }
 }
