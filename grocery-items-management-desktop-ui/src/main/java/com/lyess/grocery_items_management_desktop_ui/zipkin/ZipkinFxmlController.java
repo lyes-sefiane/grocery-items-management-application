@@ -1,4 +1,4 @@
-package com.lyess.grocery_items_management_desktop_ui.about;
+package com.lyess.grocery_items_management_desktop_ui.zipkin;
 
 import com.lyess.grocery_items_management_desktop_ui.url.UrlFxmlController;
 import org.springframework.beans.factory.annotation.Value;
@@ -12,18 +12,17 @@ import org.springframework.stereotype.Component;
  * @since 2024-10-10
  */
 @Component
-public class AboutMeFxmlController extends UrlFxmlController {
+public class ZipkinFxmlController extends UrlFxmlController {
 
-    @Value("${website.url}")
-    private String websiteUrl;
+    @Value("${zipkin.url}")
+    private String zipkinUrl;
 
-    public AboutMeFxmlController(ApplicationContext applicationContext) {
+    protected ZipkinFxmlController(ApplicationContext applicationContext) {
         super(applicationContext);
     }
 
     @Override
     protected String getUrl() {
-        return websiteUrl;
+        return zipkinUrl;
     }
-
 }
