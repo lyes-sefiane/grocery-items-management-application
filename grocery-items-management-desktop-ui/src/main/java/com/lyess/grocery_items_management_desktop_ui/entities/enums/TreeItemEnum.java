@@ -1,6 +1,5 @@
 package com.lyess.grocery_items_management_desktop_ui.entities.enums;
 
-import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -17,32 +16,35 @@ import java.util.stream.Collectors;
  */
 public enum TreeItemEnum {
 
-    HOME("Home", "/fxml/welcome/welcome.fxml", "/images/home-icon.png"),
-    GROCERY_ITEMS_MANAGEMENT("Grocery Items", "/fxml/groceryitemsmanagement/findgroceryItems.fxml", "/images/items-icon.png"),
-    FIND_GROCERY_ITEMS("Find Grocery Items", "/fxml/groceryitemsmanagement/findgroceryItems.fxml", StringUtils.EMPTY),
-    ADD_GROCERY_ITEM("Add Grocery Item", "/fxml/groceryitemsmanagement/creategroceryItem.fxml",  StringUtils.EMPTY),
-    UPDATE_GROCERY_ITEM("Update Grocery Item", "/fxml/groceryitemsmanagement/updategroceryItem.fxml",  StringUtils.EMPTY),
-    SWAGGER_UI("Swagger", "/fxml/swagger/swagger.fxml", "/images/swagger-icon.png"),
-    ZIPKIN_UI("Zipkin", "/fxml/zipkin/zipkin.fxml", "/images/zipkin-icon.png"),
-    GITHUB_DOCUMENTATION("Documentation", "/fxml/github/github.fxml", "/images/github-icon.png"),
-    LICENSE_ITEM("License", "/fxml/license/license.fxml", "/images/license-icon.png"),
-    ABOUT_ME_ITEM("About Me", "/fxml/about/about.fxml", "/images/about-me-icon.png");
+    HOME("Home", "/fxml/welcome/welcome.fxml", IconEnum.HOME, true),
+    GROCERY_ITEMS_MANAGEMENT("Grocery Items", "/fxml/groceryitemsmanagement/findgroceryItems.fxml", IconEnum.ITEMS, true),
+    FIND_GROCERY_ITEMS("Find Grocery Items", "/fxml/groceryitemsmanagement/findgroceryItems.fxml", IconEnum.UNSUPPORTED, false),
+    ADD_GROCERY_ITEM("Add Grocery Item", "/fxml/groceryitemsmanagement/creategroceryItem.fxml",  IconEnum.UNSUPPORTED, false),
+    UPDATE_GROCERY_ITEM("Update Grocery Item", "/fxml/groceryitemsmanagement/updategroceryItem.fxml", IconEnum.UNSUPPORTED, false),
+    SWAGGER_UI("Swagger", "/fxml/swagger/swagger.fxml", IconEnum.SWAGGER, true),
+    ZIPKIN_UI("Zipkin", "/fxml/zipkin/zipkin.fxml", IconEnum.ZIPKIN, true),
+    GITHUB_DOCUMENTATION("Documentation", "/fxml/github/github.fxml", IconEnum.GITHUB, true),
+    LICENSE_ITEM("License", "/fxml/license/license.fxml", IconEnum.LICENSE, true),
+    ABOUT_ME_ITEM("About Me", "/fxml/about/about.fxml", IconEnum.ABOUT_ME, true);
 
 
     private final String value;
 
     private final String fxml;
 
-    private final String icon;
+    private final IconEnum iconEnum;
+
+    private final boolean isVisible;
 
     private static final Logger log = LoggerFactory.getLogger(TreeItemEnum.class);
 
     private static final Map<String, TreeItemEnum> mapOfEnumsByValue = Arrays.stream(TreeItemEnum.values()).collect(Collectors.toMap(TreeItemEnum::getValue, entry -> entry));
 
-    TreeItemEnum(String value, String fxml, String icon) {
+    TreeItemEnum(String value, String fxml, IconEnum iconEnum, boolean isVisible) {
         this.value = value;
         this.fxml = fxml;
-        this.icon = icon;
+        this.iconEnum = iconEnum;
+        this.isVisible = isVisible;
     }
 
     public String getValue() {
@@ -53,8 +55,12 @@ public enum TreeItemEnum {
         return fxml;
     }
 
-    public String getIcon() {
-        return icon;
+    public IconEnum getIconEnum() {
+        return iconEnum;
+    }
+
+    public boolean isVisible() {
+        return isVisible;
     }
 
     public static TreeItemEnum getEnumByValue(String value) {
