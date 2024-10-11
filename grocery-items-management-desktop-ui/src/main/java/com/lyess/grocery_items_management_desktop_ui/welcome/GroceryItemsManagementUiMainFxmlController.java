@@ -65,9 +65,10 @@ public class GroceryItemsManagementUiMainFxmlController {
         TreeItem<String> groceryItems = new TreeItem<>(TreeItemEnum.GROCERY_ITEMS_MANAGEMENT.getValue(), new ImageView(new Image(Objects.requireNonNull(getClass().getResourceAsStream(TreeItemEnum.GROCERY_ITEMS_MANAGEMENT.getIcon())), 28, 28, false, false)));
         TreeItem<String> swaggerUi = new TreeItem<>(TreeItemEnum.SWAGGER_UI.getValue(), new ImageView(new Image(Objects.requireNonNull(getClass().getResourceAsStream(TreeItemEnum.SWAGGER_UI.getIcon())), 32, 32, false, false)));
         TreeItem<String> zipkinUi = new TreeItem<>(TreeItemEnum.ZIPKIN_UI.getValue(), new ImageView(new Image(Objects.requireNonNull(getClass().getResourceAsStream(TreeItemEnum.ZIPKIN_UI.getIcon())), 32, 32, false, false)));
+        TreeItem<String> githubDocumentation = new TreeItem<>(TreeItemEnum.GITHUB_DOCUMENTATION.getValue(), new ImageView(new Image(Objects.requireNonNull(getClass().getResourceAsStream(TreeItemEnum.GITHUB_DOCUMENTATION.getIcon())), 32, 32, false, false)));
         TreeItem<String> license = new TreeItem<>(TreeItemEnum.LICENSE_ITEM.getValue(), new ImageView(new Image(Objects.requireNonNull(getClass().getResourceAsStream(TreeItemEnum.LICENSE_ITEM.getIcon())), 32, 32, false, false)));
         TreeItem<String> aboutMe = new TreeItem<>(TreeItemEnum.ABOUT_ME_ITEM.getValue(), new ImageView(new Image(Objects.requireNonNull(getClass().getResourceAsStream(TreeItemEnum.ABOUT_ME_ITEM.getIcon())), 32, 32, false, false)));
-        root.getChildren().addAll(List.of(home, groceryItems, swaggerUi, zipkinUi, license, aboutMe));
+        root.getChildren().addAll(List.of(home, groceryItems, swaggerUi, zipkinUi, githubDocumentation, license, aboutMe));
         groceryItemsManagementTreeView.setRoot(root);
         groceryItemsManagementTreeView.setVisible(true);
     }

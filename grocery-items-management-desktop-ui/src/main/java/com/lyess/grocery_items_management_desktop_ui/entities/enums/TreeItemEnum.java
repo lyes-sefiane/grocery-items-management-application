@@ -24,6 +24,7 @@ public enum TreeItemEnum {
     UPDATE_GROCERY_ITEM("Update Grocery Item", "/fxml/groceryitemsmanagement/updategroceryItem.fxml",  StringUtils.EMPTY),
     SWAGGER_UI("Swagger", "/fxml/swagger/swagger.fxml", "/images/swagger-icon.png"),
     ZIPKIN_UI("Zipkin", "/fxml/zipkin/zipkin.fxml", "/images/zipkin-icon.png"),
+    GITHUB_DOCUMENTATION("Documentation", "/fxml/github/github.fxml", "/images/github-icon.png"),
     LICENSE_ITEM("License", "/fxml/license/license.fxml", "/images/license-icon.png"),
     ABOUT_ME_ITEM("About Me", "/fxml/about/about.fxml", "/images/about-me-icon.png");
 
