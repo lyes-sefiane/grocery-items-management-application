@@ -19,10 +19,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-
-
 
 
 /**
@@ -61,14 +60,16 @@ public class GroceryItemsManagementUiMainFxmlController {
      */
     private void initTreeView() {
         TreeItem<String> root = new TreeItem<>();
-        TreeItem<String> home = new TreeItem<>(TreeItemEnum.HOME.getValue(), new ImageView(new Image(Objects.requireNonNull(getClass().getResourceAsStream(TreeItemEnum.HOME.getIcon())), 32, 32, false, false)));
-        TreeItem<String> groceryItems = new TreeItem<>(TreeItemEnum.GROCERY_ITEMS_MANAGEMENT.getValue(), new ImageView(new Image(Objects.requireNonNull(getClass().getResourceAsStream(TreeItemEnum.GROCERY_ITEMS_MANAGEMENT.getIcon())), 28, 28, false, false)));
-        TreeItem<String> swaggerUi = new TreeItem<>(TreeItemEnum.SWAGGER_UI.getValue(), new ImageView(new Image(Objects.requireNonNull(getClass().getResourceAsStream(TreeItemEnum.SWAGGER_UI.getIcon())), 32, 32, false, false)));
-        TreeItem<String> zipkinUi = new TreeItem<>(TreeItemEnum.ZIPKIN_UI.getValue(), new ImageView(new Image(Objects.requireNonNull(getClass().getResourceAsStream(TreeItemEnum.ZIPKIN_UI.getIcon())), 32, 32, false, false)));
-        TreeItem<String> githubDocumentation = new TreeItem<>(TreeItemEnum.GITHUB_DOCUMENTATION.getValue(), new ImageView(new Image(Objects.requireNonNull(getClass().getResourceAsStream(TreeItemEnum.GITHUB_DOCUMENTATION.getIcon())), 32, 32, false, false)));
-        TreeItem<String> license = new TreeItem<>(TreeItemEnum.LICENSE_ITEM.getValue(), new ImageView(new Image(Objects.requireNonNull(getClass().getResourceAsStream(TreeItemEnum.LICENSE_ITEM.getIcon())), 32, 32, false, false)));
-        TreeItem<String> aboutMe = new TreeItem<>(TreeItemEnum.ABOUT_ME_ITEM.getValue(), new ImageView(new Image(Objects.requireNonNull(getClass().getResourceAsStream(TreeItemEnum.ABOUT_ME_ITEM.getIcon())), 32, 32, false, false)));
-        root.getChildren().addAll(List.of(home, groceryItems, swaggerUi, zipkinUi, githubDocumentation, license, aboutMe));
+        List<TreeItem<String>>  treeItems = Arrays.stream(TreeItemEnum.values())
+                .filter(TreeItemEnum::isVisible)
+                .map(treeItemEnum -> new TreeItem<>(treeItemEnum.getValue(),//
+                        new ImageView(new Image(Objects.requireNonNull(getClass().getResourceAsStream(treeItemEnum.getIconEnum().getLocation())),//
+                                treeItemEnum.getIconEnum().getWidth(),//
+                                treeItemEnum.getIconEnum().getHeight(),//
+                                treeItemEnum.getIconEnum().isPreserveRatio(),//
+                                treeItemEnum.getIconEnum().isSmooth()))))
+                .toList();
+        root.getChildren().addAll(treeItems);
         groceryItemsManagementTreeView.setRoot(root);
         groceryItemsManagementTreeView.setVisible(true);
     }
