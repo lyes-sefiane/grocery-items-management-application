@@ -1,4 +1,4 @@
-package com.lyess.grocery_items_management_desktop_ui.abstractfxcontroller;
+package com.lyess.grocery_items_management_desktop_ui.url;
 
 import javafx.application.HostServices;
 import javafx.application.Platform;
@@ -14,7 +14,7 @@ import org.springframework.context.ApplicationContext;
  * @version 1.0
  * @since 2024-10-10
  */
-public abstract class LicenseOrSwaggerFxmlContrroller {
+public abstract class UrlFxmlController {
 
     @FXML
     protected Hyperlink hyperlink;
@@ -26,7 +26,7 @@ public abstract class LicenseOrSwaggerFxmlContrroller {
 
     protected ApplicationContext applicationContext;
 
-    protected LicenseOrSwaggerFxmlContrroller(ApplicationContext applicationContext) {
+    protected UrlFxmlController(ApplicationContext applicationContext) {
         this.applicationContext = applicationContext;
     }
 
