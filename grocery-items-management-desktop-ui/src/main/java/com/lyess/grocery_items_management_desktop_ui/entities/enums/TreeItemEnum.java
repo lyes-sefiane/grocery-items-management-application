@@ -22,7 +22,8 @@ public enum TreeItemEnum {
     FIND_GROCERY_ITEMS("Find Grocery Items", "/fxml/groceryitemsmanagement/findgroceryItems.fxml", StringUtils.EMPTY),
     ADD_GROCERY_ITEM("Add Grocery Item", "/fxml/groceryitemsmanagement/creategroceryItem.fxml",  StringUtils.EMPTY),
     UPDATE_GROCERY_ITEM("Update Grocery Item", "/fxml/groceryitemsmanagement/updategroceryItem.fxml",  StringUtils.EMPTY),
-    SWAGGER_UI("Swagger UI", "/fxml/swagger/swagger.fxml", "/images/swagger-icon.png"),
+    SWAGGER_UI("Swagger", "/fxml/swagger/swagger.fxml", "/images/swagger-icon.png"),
+    ZIPKIN_UI("Zipkin", "/fxml/zipkin/zipkin.fxml", "/images/zipkin-icon.png"),
     LICENSE_ITEM("License", "/fxml/license/license.fxml", "/images/license-icon.png"),
     ABOUT_ME_ITEM("About Me", "/fxml/about/about.fxml", "/images/about-me-icon.png");
 
