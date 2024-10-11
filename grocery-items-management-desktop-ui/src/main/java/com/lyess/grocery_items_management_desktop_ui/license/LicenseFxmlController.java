@@ -1,6 +1,6 @@
 package com.lyess.grocery_items_management_desktop_ui.license;
 
-import com.lyess.grocery_items_management_desktop_ui.abstractfxcontroller.LicenseOrSwaggerFxmlContrroller;
+import com.lyess.grocery_items_management_desktop_ui.url.UrlFxmlController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationContext;
@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
  * @since 2024-10-10
  */
 @Component
-public class LicenseFxmlController extends LicenseOrSwaggerFxmlContrroller {
+public class LicenseFxmlController extends UrlFxmlController {
 
     @Value("${creativecommons.url}")
     private String creativeCommonsUrl;
