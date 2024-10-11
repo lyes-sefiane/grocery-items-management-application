@@ -3,7 +3,7 @@ package com.lyess.grocery_items_management_desktop_ui.groceryitemsmanagement;
 
 import com.lyess.grocery_items_management_common.domain.GroceryItemResource;
 import com.lyess.grocery_items_management_desktop_ui.entities.CustomTableCell;
-import com.lyess.grocery_items_management_desktop_ui.entities.enums.TableCellEnum;
+import com.lyess.grocery_items_management_desktop_ui.entities.enums.IconEnum;
 import com.lyess.grocery_items_management_desktop_ui.entities.enums.TreeItemEnum;
 import com.lyess.grocery_items_management_desktop_ui.service.GroceryItemsManagementService;
 import com.lyess.grocery_items_management_desktop_ui.welcome.GroceryItemsManagementUiMainFxmlController;
@@ -98,12 +98,12 @@ public non-sealed class FindAllGroceryItemsFxmlController extends GroceryItemsMa
         qte.setCellValueFactory(groceryItem -> new SimpleIntegerProperty(groceryItem.getValue().getGroceryItem().getQuantity()));
         category.setCellValueFactory(groceryItem -> new SimpleStringProperty(groceryItem.getValue().getGroceryItem().getCategory().toString()));
         edit.setCellFactory(groceryItemResourceEditTableColumn -> {
-            CustomTableCell currentButtonCell = new CustomTableCell(TableCellEnum.EDIT);
+            CustomTableCell currentButtonCell = new CustomTableCell(IconEnum.EDIT);
             currentButtonCell.getButton().setOnAction(actionEvent -> editOnAction(currentButtonCell));
             return currentButtonCell;
         });
         delete.setCellFactory(groceryItemResourceEditTableColumn -> {
-            CustomTableCell currentButtonCell = new CustomTableCell(TableCellEnum.DELETE);
+            CustomTableCell currentButtonCell = new CustomTableCell(IconEnum.DELETE);
             currentButtonCell.getButton().setOnAction(actionEvent -> deleteOnAction(currentButtonCell));
             return currentButtonCell;
         });
