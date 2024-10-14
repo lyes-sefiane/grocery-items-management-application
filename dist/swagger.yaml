@@ -1,0 +1,288 @@
+openapi: 3.0.1
+info:
+  title: Grocery Items Management
+  description: Grocery Items Management Microservice
+  contact:
+    name: Lyes Sefiane
+    url: https://lyes-sefiane.web.app
+    email: lyes.sefiane@gmail.com
+  license:
+    name: CC-BY-NC-ND-4.0
+    url: https://creativecommons.org/licenses/by-nc-nd/4.0/
+  version: "1.0"
+externalDocs:
+  description: GitHub Wiki
+  url: https://github.com/lyes-sefiane/grocery-items-management-application/wiki
+servers:
+- url: http://2c4d5b467db0:8080/groceryitem/api
+  description: Generated server url
+tags:
+- name: Grocery Items
+  description: Grocery Items Management REST Controller
+paths:
+  /v1/items/{id}:
+    get:
+      tags:
+      - Grocery Items
+      summary: Find Grocery Item
+      operationId: findGroceryItem
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "400":
+          description: BAD_REQUEST
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ExceptionResponse"
+        "415":
+          description: UNSUPPORTED_MEDIA_TYPE
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ExceptionResponse"
+        "404":
+          description: NOT_FOUND
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ExceptionResponse"
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GroceryItemResource"
+    put:
+      tags:
+      - Grocery Items
+      summary: Update Grocery Item
+      operationId: updateGroceryItem
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/GroceryItemRecord"
+        required: true
+      responses:
+        "400":
+          description: BAD_REQUEST
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ExceptionResponse"
+        "415":
+          description: UNSUPPORTED_MEDIA_TYPE
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ExceptionResponse"
+        "404":
+          description: NOT_FOUND
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ExceptionResponse"
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GroceryItemResource"
+    delete:
+      tags:
+      - Grocery Items
+      summary: Delete Grocery Item
+      operationId: deleteGroceryItem
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "400":
+          description: BAD_REQUEST
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ExceptionResponse"
+        "204":
+          description: NO_CONTENT
+          content:
+            application/json: {}
+        "415":
+          description: UNSUPPORTED_MEDIA_TYPE
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ExceptionResponse"
+        "404":
+          description: NOT_FOUND
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ExceptionResponse"
+  /v1/items:
+    get:
+      tags:
+      - Grocery Items
+      summary: Find Grocery Items
+      operationId: findAllGroceryItems
+      responses:
+        "400":
+          description: BAD_REQUEST
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ExceptionResponse"
+        "415":
+          description: UNSUPPORTED_MEDIA_TYPE
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ExceptionResponse"
+        "404":
+          description: NOT_FOUND
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ExceptionResponse"
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GroceryItemResource"
+    post:
+      tags:
+      - Grocery Items
+      summary: Register Grocery Item
+      operationId: saveGroceryItem
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/GroceryItemRecord"
+        required: true
+      responses:
+        "400":
+          description: BAD_REQUEST
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ExceptionResponse"
+        "415":
+          description: UNSUPPORTED_MEDIA_TYPE
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ExceptionResponse"
+        "404":
+          description: NOT_FOUND
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ExceptionResponse"
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GroceryItemResource"
+components:
+  schemas:
+    GroceryItemRecord:
+      required:
+      - category
+      - name
+      type: object
+      properties:
+        name:
+          type: string
+        quantity:
+          minimum: 0
+          type: integer
+          format: int32
+        category:
+          type: string
+    ErrorResponse:
+      type: object
+      allOf:
+      - $ref: "#/components/schemas/ValidationError"
+    ExceptionResponse:
+      type: object
+      properties:
+        timeStamp:
+          type: string
+          format: date-time
+        status:
+          type: string
+        error:
+          type: string
+        message:
+          type: string
+        path:
+          type: string
+        details:
+          $ref: "#/components/schemas/ErrorResponse"
+      readOnly: true
+    ValidationError:
+      type: object
+      properties:
+        object:
+          type: string
+        field:
+          type: string
+        rejectedValue:
+          type: object
+        message:
+          type: string
+    GroceryItem:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        quantity:
+          type: integer
+          format: int32
+        category:
+          type: string
+    GroceryItemResource:
+      type: object
+      properties:
+        groceryItem:
+          $ref: "#/components/schemas/GroceryItem"
+        link:
+          $ref: "#/components/schemas/Link"
+    Link:
+      type: object
+      properties:
+        href:
+          type: string
+        hreflang:
+          type: string
+        title:
+          type: string
+        type:
+          type: string
+        deprecation:
+          type: string
+        profile:
+          type: string
+        name:
+          type: string
+        templated:
+          type: boolean
