@@ -4,8 +4,17 @@
 ![GitHub Repo stars](https://img.shields.io/github/stars/lyes-sefiane/grocery-items-management-application?style=social)
 ![GitHub top language](https://img.shields.io/github/languages/top/lyes-sefiane/grocery-items-management-application)
 
+## Documentation
+
+- [Grocery Items Management Application Documentation](https://github.com/lyes-sefiane/grocery-items-management-application/wiki)
+
+<p>
+<img src="https://raw.githubusercontent.com/wiki/lyes-sefiane/grocery-items-management-application/images/grocery-items-management-application-infrastructure.PNG" width="100%" alt="https://github.com/lyes-sefiane/grocery-items-management-application/wiki">
+</p>
+
 ## Requirements
-```
+
+```bash
 1. Java 17.x.y
 
 2. Maven 3.x.y
@@ -14,7 +23,8 @@
 ```
 
 ## Microservice Deployment to Localhost
-```
+
+```bash
 cd grocery-items-management-application/
 
 chmod u+x grocery-items-management-application
@@ -50,7 +60,7 @@ Start Grocery Items Management Application Microservice ...
 
 ## Grocery Items Management Application UI
 
-```
+```bash
 cd grocery-items-management-desktop-ui/
 
 mvn clean install -DskipTests
@@ -58,7 +68,9 @@ mvn clean install -DskipTests
 java -jar target/grocery-items-management-desktop-ui-1.0.0.jar
 
 ```
+## OpenApi / Swagger 
 
+- [Swagger UI](https://lyes-sefiane.github.io/grocery-items-management-application/)
 
 # Contributing
 
