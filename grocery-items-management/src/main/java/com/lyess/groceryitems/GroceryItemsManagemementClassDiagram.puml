@@ -1,0 +1,82 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+package Repository <<Database>> {
+    interface CrudRepository<T, ID> {
+        {abstract} <S extends T> S save(S entity)
+        {abstract} Optional<T> findById(ID id)
+        {abstract} Iterable<T> findAll()
+        {abstract} void delete(T entity)
+    }
+    interface MongoRepository<T, ID>
+    interface GroceryItemRepository<GroceryItem, String>
+}
+
+package Mapper <<Rectangle>> {
+    interface Converter<S, T> {
+        {abstract} T convert(S s)
+    }
+
+    class CustomConverter<GroceryItemRecord, GroceryItem> {
+        + GroceryItem convert(GroceryItemRecord groceryItemRecord)
+    }
+}
+
+package Service <<Rectangle>> {
+    interface IGroceryItemService {
+        {abstract} List<GroceryItem> findAllGroceryItems();
+        {abstract} GroceryItem findGroceryItem(String id);
+        {abstract} GroceryItem saveGroceryItem(GroceryItem groceryItem);
+        {abstract} GroceryItem updateGroceryItem(GroceryItem groceryItem, String id);
+        {abstract} void deleteGroceryItem(String id);
+    }
+
+    class GroceryItemService {
+      - GroceryItemRepository groceryItemRepository
+      + GroceryItemService(GroceryItemRepository groceryItemRepository)
+      + List<GroceryItem> findAllGroceryItems()
+      + GroceryItem findGroceryItem(String id)
+      + GroceryItem saveGroceryItem(GroceryItem groceryItem)
+      + GroceryItem updateGroceryItem(GroceryItem groceryItem, String id)
+      + void deleteGroceryItem(String id)
+    }
+}
+
+package Controller <<Rectangle>> {
+    class GroceryItemRestController {
+        'Attributes'
+        - IGroceryItemService groceryItemService
+        - Converter<GroceryItemRecord, GroceryItem> customConverter
+        'Methods'
+        + List<GroceryItemResource> findAllGroceryItems()
+        + GroceryItemResource findGroceryItem(String id)
+        + GroceryItemResource saveGroceryItem(GroceryItemRecord groceryItemRecord) {
+        + GroceryItemResource updateGroceryItem(GroceryItemRecord groceryItemRecord, String id)
+        + void deleteGroceryItem(String id)
+    }
+}
+
+package Exception <<Rectangle>> {
+     abstract class ResponseEntityExceptionHandler {
+        + ResponseEntity<Object> handleException(Exception ex, WebRequest request) throws Exception
+     }
+
+    class CustomResponseEntityExceptionHandler {
+        - ResponseEntity<Object> buildResponseEntity(ExceptionResponse exceptionResponse)
+        + ResponseEntity<Object> handleGroceryItemNotFound(RuntimeException ex, WebRequest request)
+        # ResponseEntity<Object> handleConstraintViolation(ConstraintViolationException ex, WebRequest request)
+        # ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request)
+    }
+}
+
+'Relationships'
+GroceryItemRestController --o GroceryItemService
+GroceryItemRestController --o CustomConverter
+Converter <|.. CustomConverter
+IGroceryItemService <|.. GroceryItemService
+MongoRepository <|--  GroceryItemRepository
+CrudRepository <|--  MongoRepository
+GroceryItemService --o GroceryItemRepository
+ResponseEntityExceptionHandler <|.. CustomResponseEntityExceptionHandler
+GroceryItemService --> CustomResponseEntityExceptionHandler
+@enduml
