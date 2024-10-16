@@ -1,0 +1,94 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+start
+
+:DispatcherServlet;
+
+:HandlerMapping;
+
+    if( Controller ? ) then (no)
+        #red:ThrowException;
+        end
+    else (yes)
+        :HandlerAdapter;
+
+:GroceryItemsRestController;
+
+    switch ( HttpMethod )
+        case ( @GetMapping("/v1/items") )
+              #palegreen:findAllGroceryItems();
+        case ( @GetMapping("/v1/items/{id}") )
+              #palegreen:findGroceryItem(@PathVariable id);
+        case ( @PostMapping("/v1/items") )
+              #palegreen:saveGroceryItem(@RequestBody GroceryItemRecord);
+              #palegreen:convert(GroceryItemRecord, GroceryItem);
+        case ( @PutMapping("/v1/items/{id}") )
+              #palegreen:updateGroceryItem(@RequestBody GroceryItemRecord, @PathVariable id);
+              #palegreen:convert(GroceryItemRecord, GroceryItem);
+        case (  @DeleteMapping("/{id}") )
+              #palegreen:deleteGroceryItem(@PathVariable id);
+        case ( Default )
+              #red:ThrowException;
+              end
+    endswitch
+
+:GroceryItemsService;
+
+   switch ()
+      case ( findAllGroceryItems() )
+              #palegreen:findAllGroceryItems();
+      case ( findGroceryItem(id) )
+              #palegreen:findGroceryItem(id);
+      case ( saveGroceryItem(GroceryItem) )
+              #palegreen:saveGroceryItem(GroceryItem);
+      case ( updateGroceryItem(GroceryItem, id) )
+              #palegreen:updateGroceryItem(GroceryItem, id);
+      case ( deleteGroceryItem(id) )
+              #palegreen:deleteGroceryItem(id);
+      case ( Default )
+              #red:ThrowException;
+              end
+   endswitch
+
+:GroceryItemRepository;
+
+    switch ()
+      case ( findAllGroceryItems() )
+              #palegreen:findAll();
+      case ( findGroceryItem(id) )
+              #palegreen:findById(id);
+      case ( saveGroceryItem(GroceryItem) )
+              #palegreen:save(GroceryItem);
+      case ( updateGroceryItem(GroceryItem, id) )
+              #palegreen:findById(id);
+              #palegreen:copyProperties(GroceryItem, ExistingGroceryItem);
+              #palegreen:save(UpdatedExistingGroceryItem);
+      case ( deleteGroceryItem(id) )
+             #palegreen:deleteById(id);
+      case ( Default )
+              #red:ThrowException;
+              end
+    endswitch
+
+:MongoDB;
+
+    switch ()
+      case ( findAll() )
+              #palegreen:db.grocery-items.find();
+      case ( findById(id) )
+              #palegreen:db.grocery-items.findOne({"_id": ObjectId('id')});
+      case ( save(GroceryItem) )
+              #palegreen:db.grocery-items.insertOne( { "_id": ObjectId('id'), "name": "name", "quantity": 0, "category": "category" } );
+      case ( deleteById(id) )
+             #palegreen:db.grocery-items.deleteOne({"_id": ObjectId('id')});
+      case ( Default )
+              #red:ThrowException;
+              end
+    endswitch
+
+:Return Results;
+
+end
+
+@enduml
