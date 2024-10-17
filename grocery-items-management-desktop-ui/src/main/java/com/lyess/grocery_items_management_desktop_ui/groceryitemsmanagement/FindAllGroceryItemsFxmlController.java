@@ -5,7 +5,7 @@ import com.lyess.grocery_items_management_common.domain.GroceryItemResource;
 import com.lyess.grocery_items_management_desktop_ui.entities.CustomTableCell;
 import com.lyess.grocery_items_management_desktop_ui.entities.enums.IconEnum;
 import com.lyess.grocery_items_management_desktop_ui.entities.enums.TreeItemEnum;
-import com.lyess.grocery_items_management_desktop_ui.service.GroceryItemsManagementService;
+import com.lyess.grocery_items_management_desktop_ui.service.IGroceryItemsManagementService;
 import com.lyess.grocery_items_management_desktop_ui.welcome.GroceryItemsManagementUiMainFxmlController;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -61,7 +61,7 @@ public non-sealed class FindAllGroceryItemsFxmlController extends GroceryItemsMa
     @FXML
     private TextField filterTextField;
 
-    private final GroceryItemsManagementService groceryItemsManagementService;
+    private final IGroceryItemsManagementService groceryItemsManagementService;
 
     private final ApplicationContext applicationContext;
 
@@ -70,7 +70,7 @@ public non-sealed class FindAllGroceryItemsFxmlController extends GroceryItemsMa
      * See : <a href="https://andifalk.gitbook.io/spring-cloud-gateway-workshop/hands-on-labs/lab3#step-1-extend-the-gateway-to-act-as-oauth-resource-server">...</a>
      */
     @Autowired
-    public FindAllGroceryItemsFxmlController(GroceryItemsManagementService groceryItemsManagementService, ApplicationContext applicationContext) {
+    public FindAllGroceryItemsFxmlController(IGroceryItemsManagementService groceryItemsManagementService, ApplicationContext applicationContext) {
         this.groceryItemsManagementService = groceryItemsManagementService;
         this.applicationContext = applicationContext;
     }
