@@ -1,0 +1,80 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+start
+
+:GroceryItemsManagementUiMainFxmlController;
+
+:initTreeView();
+
+switch ( groceryItemsManagementTreeView.getSelectionModel().getSelectedItem() )
+        case ( Grocery Items )
+            #palegreen:loadAndDisplayUiBy(TreeItemEnum.GROCERY_ITEMS_MANAGEMENT);
+            #palegreen:subscribeToGroceryItemResources();
+            split
+                -> doOnSuccess;
+                #palegreen:repeat:groceryItemsObservableList.add(groceryItemResource);
+                repeat while (More groceryItemResource to Consume ?) is (yes) not (no)
+                #palegreen:setTableViewItems(groceryItemsObservableList);
+            split again
+                -> doOnError;
+                #red:AlertMessage(Alert.AlertType.ERROR, HttpStatus.INTERNAL_SERVER_ERROR.toString(), throwable.getMessage());
+                stop
+            split again
+                -> doOnComplete;
+                #palegreen:progressBar.setProgress(1.0);
+                stop
+            end split
+            switch ( Operation )
+                case ( Edit )
+                    #palegreen:clickOnEditButton();
+                    #palegreen:editOnAction(CustomTableCell customTableCell);
+                    #palegreen:loadAndDisplayUiBy(TreeItemEnum.UPDATE_GROCERY_ITEM);
+                    #palegreen:initEditForm(GroceryItemResource groceryItemResource);
+                    #palegreen:saveOnAction(ActionEvent ignoredEvent);
+                    #palegreen:subscribe();
+                    split
+                    -> doOnSuccess;
+                    #palegreen:AlertMessage(Alert.AlertType.INFORMATION, HttpStatus.OK.toString(), alertUpdateMessage + groceryItemResource.getGroceryItem().getId());
+
+                    split again
+                    -> doOnError;
+                    #red:AlertMessage(Alert.AlertType.ERROR, HttpStatus.INTERNAL_SERVER_ERROR.toString(), throwable.getMessage());
+                    stop
+                    end split
+                case ( Delete )
+                    #palegreen:clickOnDeleteButton();
+                    #palegreen:deleteOnAction(CustomTableCell customTableCell);
+                    #palegreen:subscribe();
+                    split
+                     -> doOnSuccess;
+                    #palegreen:AlertMessage(Alert.AlertType.INFORMATION, HttpStatus.OK.toString(), alertUpdateMessage + groceryItemResource.getGroceryItem().getId());
+                    split again
+                    -> doOnError;
+                    #red:AlertMessage(Alert.AlertType.ERROR, HttpStatus.INTERNAL_SERVER_ERROR.toString(), throwable.getMessage());
+                    stop
+                    split again
+                    -> doFinally;
+                    #palegreen:doRefreshTableView(groceryItemsTableView, groceryItemResource);
+                    end split
+                case ( Create New Item )
+                    #palegreen:clickOnInsertNewGroceryItemButton();
+                    #palegreen:insertOnAction(ActionEvent ignoredEvent);
+                    #palegreen:loadAndDisplayUiBy(TreeItemEnum.ADD_GROCERY_ITEM);
+                    #palegreen:registerOnAction(ActionEvent ignoredEvent);
+                    #palegreen:subscribe();
+                    split
+                     -> doOnSuccess;
+                    #palegreen:AlertMessage(Alert.AlertType.INFORMATION, HttpStatus.CREATED.toString(), alertRegisterMessage + groceryItemResource.getGroceryItem().getId());
+
+                    split again
+                    -> doOnError;
+                    #red:AlertMessage(Alert.AlertType.ERROR, HttpStatus.INTERNAL_SERVER_ERROR.toString(), throwable.getMessage());
+                    stop
+                    end split
+            endswitch
+endswitch
+
+stop
+
+@enduml
