@@ -76,6 +76,7 @@ public non-sealed class UpdateGroceryItemFxmlController extends CreateOrUpdateGr
         groceryItemsManagementService
                 .findOneAndUpdate(idTextField.getText(), groceryItemRecord)
                 .doOnSuccess(doOnUpdateSuccessConsumer)
+                .doOnError(doOnErrorConsumer)
                 .subscribe();
     }
 }
