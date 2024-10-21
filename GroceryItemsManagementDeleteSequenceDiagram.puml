@@ -1,0 +1,79 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+
+
+title Delete Grocery Item
+
+actor User
+
+participant Desktop_UI
+
+participant APIGateway
+
+participant Consul
+
+participant GroceryItemsService
+
+participant Zipkin
+
+database RedisCache
+
+database MongoDB
+
+activate Desktop_UI
+GroceryItemsService -> Consul : Register New Service
+activate Consul
+activate APIGateway
+activate GroceryItemsService
+APIGateway -> Consul : Register New Service
+Consul -> GroceryItemsService : HTTP GET http://2c4d5b467db0:8080/groceryitem/api/actuator/health
+GroceryItemsService -> Consul : HTTP/1.1 200 OK Output: {"status":"UP"}
+deactivate GroceryItemsService
+Consul -> APIGateway : HTTP GET http://3e0dddd58d13:8080/actuator/health
+APIGateway -> Consul : HTTP/1.1 200 OK Output: {"status":"UP"}
+deactivate Consul
+deactivate APIGateway
+User -> Desktop_UI : Click On Delete Table Row
+
+Desktop_UI -> APIGateway : HTTP Delete http://localhost:8080/groceryitem/api/v1/items/{id}
+activate APIGateway
+APIGateway -> Consul : lb://grocery-items-management
+activate Consul
+Consul -> APIGateway : ServiceInstance
+deactivate Consul
+APIGateway -> GroceryItemsService : Route : /groceryitem/api/** to GroceryItemsService
+activate GroceryItemsService
+
+GroceryItemsService -> RedisCache : Cache Evict All Grocery Items
+
+GroceryItemsService -> MongoDB : > db.grocery-items.deleteOne({"_id": ObjectId('id')})
+activate MongoDB
+MongoDB -> GroceryItemsService : Return Void
+deactivate MongoDB
+GroceryItemsService -> APIGateway : ResponseEntity<Void> HTTP/1.1 200 OK
+GroceryItemsService -> Zipkin : HTTP POST http://zipkin:9411/api/v2/spans
+activate Zipkin
+Zipkin -> GroceryItemsService : Response 202 ACCEPTED
+deactivate Zipkin
+deactivate GroceryItemsService
+APIGateway -> Desktop_UI : ResponseEntity<Void> HTTP/1.1 200 OK
+APIGateway -> Zipkin : HTTP POST http://zipkin:9411/api/v2/spans
+activate Zipkin
+Zipkin -> APIGateway : Response 202 ACCEPTED
+deactivate Zipkin
+deactivate APIGateway
+User -> Desktop_UI : Visualize Notification Message
+deactivate Desktop_UI
+
+
+
+
+
+
+
+
+
+
+
+@enduml
