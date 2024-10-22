@@ -1,0 +1,60 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+
+
+title Swagger UI
+
+actor User
+
+participant Desktop_UI
+
+participant APIGateway
+
+participant Consul
+
+participant GroceryItemsService
+
+participant Zipkin
+
+GroceryItemsService -> Consul : Register New Service
+activate GroceryItemsService
+activate Consul
+Consul -> GroceryItemsService : HTTP GET http://2c4d5b467db0:8080/groceryitem/api/actuator/health
+GroceryItemsService -> Consul : HTTP/1.1 200 OK Output: {"status":"UP"}
+deactivate GroceryItemsService
+APIGateway -> Consul : Register New Service
+activate APIGateway
+Consul -> APIGateway : HTTP GET http://3e0dddd58d13:8080/actuator/health
+APIGateway -> Consul : HTTP/1.1 200 OK Output: {"status":"UP"}
+deactivate APIGateway
+deactivate Consul
+User -> Desktop_UI : Click On Swagger UI
+Desktop_UI -> APIGateway : HTTP GET http://localhost:8080/groceryitem/api/swagger-ui/index.html
+activate APIGateway
+APIGateway -> Consul : lb://grocery-items-management
+activate Consul
+Consul -> APIGateway : ServiceInstance
+deactivate Consul
+APIGateway -> GroceryItemsService : Route : /groceryitem/api/** to GroceryItemsService
+activate GroceryItemsService
+GroceryItemsService -> APIGateway : HTTP/1.1 200 OK Content-Type: text/html
+GroceryItemsService -> Zipkin : HTTP POST http://zipkin:9411/api/v2/spans
+activate Zipkin
+Zipkin -> GroceryItemsService : Response 202 ACCEPTED
+deactivate Zipkin
+deactivate GroceryItemsService
+APIGateway -> Desktop_UI : HTTP/1.1 200 OK Content-Type: text/html
+APIGateway -> Zipkin : HTTP POST http://zipkin:9411/api/v2/spans
+activate Zipkin
+Zipkin -> APIGateway : Response 202 ACCEPTED
+deactivate Zipkin
+deactivate APIGateway
+User -> Desktop_UI : Visualize Swagger UI
+
+
+
+
+
+
+@enduml
