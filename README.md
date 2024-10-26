@@ -3,6 +3,13 @@
 A Desktop Application Oriented Microservice Architecture
 
 ### © 2024 | Lyes Sefiane <img src="https://raw.githubusercontent.com/wiki/lyes-sefiane/grocery-items-management-application/images/algeria-flag-icon.png" width="2%"> <img src="https://raw.githubusercontent.com/wiki/lyes-sefiane/grocery-items-management-application/images/canada-flag-icon.png" width="2%"> All Rights Reserved | [CC BY-NC-ND 4.0](https://creativecommons.org/licenses/by-nc-nd/4.0/)
+
+[![CC BY-NC-ND 4.0][cc-by-nc-nd-image]][cc-by-nc-nd]
+
+[cc-by-nc-nd]: http://creativecommons.org/licenses/by-nc-nd/4.0/
+[cc-by-nc-nd-image]: https://licensebuttons.net/l/by-nc-nd/4.0/88x31.png
+[cc-by-nc-nd-shield]: https://img.shields.io/badge/License-CC%20BY--NC--ND%204.0-lightgrey.svg
+
 ###
 
 ![License](https://img.shields.io/static/v1?label=License&message=CC-BY-NC-ND-4.0&color=green)
@@ -12,6 +19,14 @@ A Desktop Application Oriented Microservice Architecture
 ## Documentation
 
 - [Grocery Items Management Application Documentation](https://github.com/lyes-sefiane/grocery-items-management-application/wiki)
+
+## User Interface
+
+<p>
+<img src="https://raw.githubusercontent.com/wiki/lyes-sefiane/grocery-items-management-application/images/welcome.PNG">
+</p>
+
+## Infrastructure
 
 <p>
 <img src="https://raw.githubusercontent.com/wiki/lyes-sefiane/grocery-items-management-application/images/grocery-items-management-application-infrastructure.PNG" width="100%" alt="https://github.com/lyes-sefiane/grocery-items-management-application/wiki">
@@ -75,7 +90,13 @@ java -jar target/grocery-items-management-desktop-ui-1.0.0.jar
 ```
 ## OpenApi / Swagger 
 
-- [Swagger UI](https://lyes-sefiane.github.io/grocery-items-management-application/)
+- [API Documentation / Swagger UI](https://lyes-sefiane.github.io/grocery-items-management-application/)
+
+# Enhancements
+
+- [ ] Authentication and Authorization Implementation
+- [ ] Unit and Integration Tests Implementation
+- [ ] CI/CD Implementation
 
 # Contributing
 
