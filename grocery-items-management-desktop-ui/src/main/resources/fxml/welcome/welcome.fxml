@@ -1,15 +1,69 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.Blend?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.RadialGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" focusTraversable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="324.0" prefWidth="478.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1">
+<VBox alignment="CENTER" focusTraversable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="324.0" prefWidth="478.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <ImageView fitHeight="314.0" fitWidth="284.0">
-         <image>
-            <Image url="@../../images/grocery-store-logo.png" />
-         </image>
-      </ImageView>
+      <StackPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+         <children>
+            <ImageView fitHeight="522.0" fitWidth="600.0" focusTraversable="true" preserveRatio="true" StackPane.alignment="TOP_RIGHT">
+               <image>
+                  <Image url="@../../images/grocery-store-logo.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="522.0" fitWidth="600.0" focusTraversable="true" preserveRatio="true" StackPane.alignment="BOTTOM_LEFT">
+               <image>
+                  <Image url="@../../images/grocery-store-1-logo.png" />
+               </image>
+            </ImageView>
+            <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="17.0" prefWidth="637.0" text="Welcome" textAlignment="CENTER">
+               <textFill>
+                  <RadialGradient centerX="0.48895027624309395" centerY="0.481042654028436" focusDistance="0.06896551724137923" radius="0.8448275862068966">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color red="0.7631579041481018" green="0.06712962687015533" blue="0.6123517751693726" opacity="0.8500000238418579" />
+                           </color>
+                        </Stop>
+                        <Stop offset="0.006711409395973154">
+                           <color>
+                              <Color red="0.7631579041481018" green="0.06712962687015533" blue="0.6123517751693726" opacity="0.8500000238418579" />
+                           </color>
+                        </Stop>
+                        <Stop offset="0.4786789981993781">
+                           <color>
+                              <Color red="0.4335028827190399" green="0.4276925027370453" blue="0.7763158082962036" opacity="0.8500000238418579" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="0.125" green="0.48303571343421936" blue="0.5" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </RadialGradient>
+               </textFill>
+               <font>
+                  <Font name="Calibri" size="96.0" />
+               </font>
+               <effect>
+                  <Blend />
+               </effect>
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+            </Label>
+         </children>
+      </StackPane>
    </children>
 </VBox>
