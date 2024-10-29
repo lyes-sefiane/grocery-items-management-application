@@ -3,6 +3,8 @@ services:
     image: openzipkin/zipkin:latest
     container_name: zipkin
     restart: unless-stopped
+    pull_policy: always
+    read_only: true
     ports:
       - ${ZIPKIN_PORT}:${ZIPKIN_PORT}
     networks:

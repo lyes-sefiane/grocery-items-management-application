@@ -4,6 +4,8 @@ services:
     image: hashicorp/consul:latest
     container_name: consul-server
     restart: unless-stopped
+    pull_policy: always
+    read_only: true
     command: ${CONSUL_SERVER_COMMAND}
     volumes:
       - ../hashicorp-consul/server.json:/consul/config/server.json:ro

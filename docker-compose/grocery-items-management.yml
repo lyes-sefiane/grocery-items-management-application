@@ -3,6 +3,8 @@ services:
     image: lsefiane/grocery-items-management:latest
     container_name: grocery-items-management
     restart: unless-stopped
+    pull_policy: always
+    read_only: true
     expose:
       - ${GROCERY_ITEMS_MANAGEMENT_PORT}
     depends_on:
