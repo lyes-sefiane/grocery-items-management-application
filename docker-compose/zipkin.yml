@@ -4,7 +4,7 @@ services:
     container_name: zipkin
     restart: unless-stopped
     pull_policy: always
-    read_only: true
+    read_only: false
     ports:
       - ${ZIPKIN_PORT}:${ZIPKIN_PORT}
     networks:

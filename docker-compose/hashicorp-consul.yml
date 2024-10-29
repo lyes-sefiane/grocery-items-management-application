@@ -5,7 +5,7 @@ services:
     container_name: consul-server
     restart: unless-stopped
     pull_policy: always
-    read_only: true
+    read_only: false
     command: ${CONSUL_SERVER_COMMAND}
     volumes:
       - ../hashicorp-consul/server.json:/consul/config/server.json:ro
