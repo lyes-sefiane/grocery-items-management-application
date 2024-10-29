@@ -4,7 +4,7 @@ services:
     container_name: grocery-items-management
     restart: unless-stopped
     pull_policy: always
-    read_only: true
+    read_only: false
     expose:
       - ${GROCERY_ITEMS_MANAGEMENT_PORT}
     depends_on:
