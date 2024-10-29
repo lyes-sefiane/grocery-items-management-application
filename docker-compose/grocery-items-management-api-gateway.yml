@@ -3,6 +3,8 @@ services:
     image: lsefiane/grocery-items-management-api-gateway:latest
     container_name: grocery-items-management-api-gateway
     restart: unless-stopped
+    pull_policy: always
+    read_only: true
     ports:
       - ${GROCERY_ITEMS_MANAGEMENT_API_GATEWAY_PORT}:${GROCERY_ITEMS_MANAGEMENT_API_GATEWAY_PORT}
     networks:
