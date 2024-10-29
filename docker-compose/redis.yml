@@ -4,7 +4,7 @@ services:
     container_name: redis
     restart: unless-stopped
     pull_policy: always
-    read_only: true
+    read_only: false
     expose:
       - ${REDIS_PORT}
     networks:
@@ -13,7 +13,6 @@ services:
       REDIS_PORT_NUMBER: ${REDIS_PORT_NUMBER}
       REDIS_DATABASE: ${REDIS_DATABASE}
       REDIS_PASSWORD: ${REDIS_PASSWORD}
-
 
 networks:
   grocery-items-management-application:
