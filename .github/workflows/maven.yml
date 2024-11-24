@@ -32,4 +32,4 @@ jobs:
     - name: Build with Maven
       run: mvn -s $GITHUB_WORKSPACE/.github/workflows/maven-settings.xml -B package --file pom.xml
       env:
-        ACCESS_TOKEN: ${{ secrets.GITHUB_PACKAGES_REGISTRY_ACCESS_TOKEN }}
+        ACCESS_TOKEN: ${{ secrets.PACKAGES_REGISTRY_ACCESS_TOKEN }}
