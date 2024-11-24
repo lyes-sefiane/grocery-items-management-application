@@ -1,7 +1,7 @@
 package com.lyess.groceryitems.service;
 
 import com.lyess.groceryitems.domain.entity.GroceryItem;
-import com.lyess.groceryitems.exception.GroceryItemNotFoundException;
+import io.github.lyes_sefiane.exception_response.NotFoundException;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -88,7 +88,7 @@ public class GroceryItemsServiceIntegrationTest {
     public void testDelete() {
         String id = "Whole Wheat";
         groceryItemService.deleteGroceryItem(id);
-        assertThrows(GroceryItemNotFoundException.class, () -> groceryItemService.findById(id));
+        assertThrows(NotFoundException.class, () -> groceryItemService.findById(id));
     }
 
 

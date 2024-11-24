@@ -1,7 +1,7 @@
 package com.lyess.groceryitems.repository;
 
+import io.github.lyes_sefiane.exception_response.NotFoundException;
 import com.lyess.groceryitems.domain.entity.GroceryItem;
-import com.lyess.groceryitems.exception.GroceryItemNotFoundException;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.data.mongo.DataMongoTest;
@@ -61,7 +61,7 @@ public class GroceryItemsRepositoryIntegrationTest {
     public void testFindOne() {
         // Given groceryItem saved in the repository
         // When
-        GroceryItem existingGroceryItem = groceryItemRepository.findById("Whole Wheat Biscuit").orElseThrow(GroceryItemNotFoundException::new);
+        GroceryItem existingGroceryItem = groceryItemRepository.findById("Whole Wheat Biscuit").orElseThrow(NotFoundException::new);
         // Then
         assertTrue(existingGroceryItem.getId().equalsIgnoreCase("Whole Wheat Biscuit") && //
                 existingGroceryItem.getName().equalsIgnoreCase("Whole Wheat Biscuit") && //
