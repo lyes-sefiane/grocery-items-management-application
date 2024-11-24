@@ -1,7 +1,6 @@
 package com.lyess.groceryitems.service;
 
 import com.lyess.groceryitems.domain.entity.GroceryItem;
-import com.lyess.groceryitems.exception.GroceryItemNotFoundException;
 import com.lyess.groceryitems.repository.GroceryItemRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -105,6 +104,6 @@ public class GroceryItemService implements IGroceryItemService {
      * @see GroceryItem
      */
     public GroceryItem findById(String id) {
-        return groceryItemRepository.findById(id).orElseThrow(GroceryItemNotFoundException::new);
+        return groceryItemRepository.findById(id).orElseThrow(io.github.lyes_sefiane.exception_response.NotFoundException::new);
     }
 }
