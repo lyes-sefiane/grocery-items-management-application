@@ -17,6 +17,13 @@
         <java.version>17</java.version>
         <spring-cloud.version>2023.0.3</spring-cloud.version>
     </properties>
+    <distributionManagement>
+        <repository>
+            <id>github</id>
+            <name>GitHub Lyes Sefiane Apache Maven Packages</name>
+            <url>https://maven.pkg.github.com/lyes-sefiane/exception-response</url>
+        </repository>
+    </distributionManagement>
     <dependencies>
 		<dependency>
 		  <groupId>io.github.lyes-sefiane</groupId>
