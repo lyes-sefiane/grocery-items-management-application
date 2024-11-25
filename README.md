@@ -48,41 +48,9 @@ A Desktop Application Oriented Microservice Architecture
 3. Docker 3.x.y
 ```
 
-## Microservice Deployment to Localhost
+## Deployment
 
-```bash
-cd grocery-items-management-application/
-
-chmod u+x grocery-items-management-application
-
-./grocery-items-management-application
-
-
-  ┏┓             ┳
-  ┃┓┏┓┏┓┏┏┓┏┓┓┏  ┃╋┏┓┏┳┓┏
-  ┗┛┛ ┗┛┗┗ ┛ ┗┫  ┻┗┗ ┛┗┗┛
-  ┳┳┓         ┛          ┳┳┓•            •
-  ┃┃┃┏┓┏┓┏┓┏┓┏┓┏┳┓┏┓┏┓╋  ┃┃┃┓┏┏┓┏┓┏┏┓┏┓┓┏┓┏┏┓
-  ┛ ┗┗┻┛┗┗┻┗┫┗ ┛┗┗┗ ┛┗┗  ┛ ┗┗┗┛ ┗┛┛┗ ┛ ┗┛┗┗┗
-            ┛
-
-
-MINGW64_NT-10.0-19045 : Hi 😊 ! please make a selection.
-
-1) Start Microservice
-2) ShutDown Microservice
-3) quit
-#? 1
-Start Grocery Items Management Application Microservice ...
-[+] Running 7/7
- ✔ Network docker-compose_grocery-items-management-application  Created                                                                                  0.2s 
- ✔ Container redis                                              Started                                                                                  2.6s 
- ✔ Container zipkin                                             Started                                                                                  2.8s 
- ✔ Container consul-server                                      Started                                                                                  3.1s 
- ✔ Container grocery-items-management                           Started                                                                                  4.4s 
- ✔ Container consul-client                                      Started                                                                                  4.3s 
- ✔ Container grocery-items-management-api-gateway               Started                                                                                  5.7s 
-```
+- [Grocery Items Management Application Deployment to Localhost](https://github.com/lyes-sefiane/deployments/tree/main/grocery-items-management-application-deployment)
 
 ## Grocery Items Management Application User Interface
 
