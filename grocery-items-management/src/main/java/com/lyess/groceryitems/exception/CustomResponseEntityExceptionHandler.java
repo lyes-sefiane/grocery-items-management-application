@@ -1,7 +1,7 @@
 package com.lyess.groceryitems.exception;
 
-import io.github.lyes_sefiane.exception_response.NotFoundException;
-import io.github.lyes_sefiane.exception_response.entities.ExceptionResponse;
+
+import com.lyess.groceryitems.exception.entities.ExceptionResponse;
 import jakarta.validation.ConstraintViolationException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -30,7 +30,7 @@ public class CustomResponseEntityExceptionHandler extends ResponseEntityExceptio
      * @return ResponseEntity<Object>
      * @see ResponseEntity<Object>
      */
-    @ExceptionHandler(NotFoundException.class)
+    @ExceptionHandler(GroceryItemNotFoundException.class)
     public final ResponseEntity<Object> handleGroceryItemNotFound(RuntimeException ex, WebRequest request) {
 
         return buildResponseEntity(//
