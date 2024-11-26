@@ -1,23 +1,6 @@
-/**
-
-    {
-        "groceryItem": {
-            "id": "Whole Wheat Biscuit V2",
-            "name": "Whole Wheat Biscuit V2",
-            "quantity": 5,
-            "category": "snacks"
-        },
-        "link": {
-            "rel": "self",
-            "href": "http://localhost:8081/groceryitem/api/v1/items/Whole%20Wheat%20Biscuit%20V2"
-        }
-    }
-
-**/
-
 [
   {
-    "namespace": "com.lyess.grocery_items_management_common.domain.entity",
+    "namespace": "io.github.lyes_sefiane.grocery_items_management_common.domain.entity",
     "type": "record",
     "name": "GroceryItem",
     "fields": [
@@ -40,7 +23,7 @@
     ]
   },
   {
-    "namespace": "com.lyess.grocery_items_management_common.domain.entity",
+    "namespace": "io.github.lyes_sefiane.grocery_items_management_common.domain.entity",
     "type": "record",
     "name": "Link",
     "fields": [
@@ -55,17 +38,17 @@
     ]
   },
   {
-    "namespace": "com.lyess.grocery_items_management_common.domain",
+    "namespace": "io.github.lyes_sefiane.grocery_items_management_common.domain",
     "type": "record",
     "name": "GroceryItemResource",
     "fields": [
       {
         "name": "groceryItem",
-        "type": "com.lyess.grocery_items_management_common.domain.entity.GroceryItem"
+        "type": "io.github.lyes_sefiane.grocery_items_management_common.domain.entity.GroceryItem"
       },
       {
         "name": "link",
-        "type": "com.lyess.grocery_items_management_common.domain.entity.Link"
+        "type": "io.github.lyes_sefiane.grocery_items_management_common.domain.entity.Link"
       }
     ]
   }
