@@ -8,9 +8,9 @@
         <version>3.4.0</version>
         <relativePath/>
     </parent>
-    <groupId>com.lyess</groupId>
+    <groupId>io.github.lyes-sefiane</groupId>
     <artifactId>grocery-items-management</artifactId>
-    <version>1.0.0</version>
+    <version>2.0.0</version>
     <name>grocery-items-management</name>
     <description>Grocery Items Management REST API</description>
     <url>https://lyes-sefiane.web.app/</url>

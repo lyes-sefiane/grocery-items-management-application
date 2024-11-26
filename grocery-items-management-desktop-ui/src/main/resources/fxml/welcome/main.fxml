@@ -50,7 +50,7 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lyess.grocery_items_management_desktop_ui.welcome.GroceryItemsManagementUiMainFxmlController">
+<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.github.lyes_sefiane.grocery_items_management_desktop_ui.welcome.GroceryItemsManagementUiMainFxmlController">
   <children>
     <MenuBar VBox.vgrow="NEVER">
       <menus>
