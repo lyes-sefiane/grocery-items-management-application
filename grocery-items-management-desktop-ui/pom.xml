@@ -8,9 +8,9 @@
 		<version>3.4.0</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.lyess</groupId>
+	<groupId>io.github.lyes-sefiane</groupId>
 	<artifactId>grocery-items-management-desktop-ui</artifactId>
-	<version>1.0.0</version>
+	<version>2.0.0</version>
 	<name>grocery-items-management-desktop-ui</name>
 	<description>Grocery Items Management Desktop User Interface</description>
 	<url>https://lyes-sefiane.web.app/</url>
@@ -48,9 +48,9 @@
 	</properties>
 	<dependencies>
 		<dependency>
-			<groupId>com.lyess</groupId>
+			<groupId>io.github.lyes-sefiane</groupId>
 			<artifactId>grocery-items-management-common</artifactId>
-			<version>1.0.0</version>
+			<version>2.0.0</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -113,7 +113,7 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
-					<mainClass>com.lyess.grocery_items_management_desktop_ui.GroceryItemsManagementDesktopUiApplication</mainClass>
+					<mainClass>io.github.lyes_sefiane.grocery_items_management_desktop_ui.GroceryItemsManagementDesktopUiApplication</mainClass>
 				</configuration>
 				<executions>
 					<execution>
