@@ -5,12 +5,12 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.3.5</version>
+        <version>3.4.0</version>
         <relativePath/>
     </parent>
     <groupId>com.lyess</groupId>
     <artifactId>grocery-items-management</artifactId>
-    <version>1.0</version>
+    <version>1.0.0</version>
     <name>grocery-items-management</name>
     <description>Grocery Items Management REST API</description>
     <url>https://lyes-sefiane.web.app/</url>
@@ -92,12 +92,6 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.xmlunit</groupId>
-                    <artifactId>xmlunit-core</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.junit.platform</groupId>

@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.3.5</version>
+		<version>3.4.0</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.lyess</groupId>
@@ -13,7 +13,8 @@
 	<version>1.0.0</version>
 	<name>grocery-items-management-desktop-ui</name>
 	<description>Grocery Items Management Desktop User Interface</description>
-	<url/>
+	<url>https://lyes-sefiane.web.app/</url>
+
 	<licenses>
 		<license>
 			<name>CC BY-NC-ND 4.0</name>
@@ -21,16 +22,24 @@
 			<comments>Attribution-NonCommercial-NoDerivatives 4.0 International</comments>
 		</license>
 	</licenses>
+
 	<developers>
 		<developer>
-			<name>Lyes Sefiane 🇩🇿 🇨🇦</name>
+			<name>Lyes Sefiane</name>
 			<email>lyes.sefiane@gmail.com</email>
-			<url>https://lyes-sefiane.web.app/</url>
+			<url>https://github.com/lyes-sefiane</url>
 			<roles>
 				<role>Software Engineer 3 𓂀</role>
 			</roles>
 		</developer>
 	</developers>
+
+	<scm>
+		<connection>scm:git:https://github.com/lyes-sefiane/grocery-items-management-application.git</connection>
+		<developerConnection>scm:git:https://github.com/lyes-sefiane/grocery-items-management-application.git</developerConnection>
+		<url>https://github.com/lyes-sefiane/grocery-items-management-application</url>
+	</scm>
+
 	<properties>
 		<java.version>17</java.version>
 		<javafx.version>22.0.2</javafx.version>
@@ -76,12 +85,6 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
-			<exclusions>
-				<exclusion>
-					<groupId>org.xmlunit</groupId>
-					<artifactId>xmlunit-core</artifactId>
-				</exclusion>
-			</exclusions>
 		</dependency>
 	</dependencies>
 
