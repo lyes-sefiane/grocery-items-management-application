@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.web.WebView?>
 
-<VBox alignment="CENTER" focusTraversable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="324.0" prefWidth="478.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lyess.grocery_items_management_desktop_ui.github.GitHubFxmlController">
+<VBox alignment="CENTER" focusTraversable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="324.0" prefWidth="478.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.github.lyes_sefiane.grocery_items_management_desktop_ui.github.GitHubFxmlController">
    <children>
       <WebView fx:id="webView" minHeight="-Infinity" minWidth="-Infinity" prefHeight="312.0" prefWidth="478.0" VBox.vgrow="ALWAYS" />
       <Label>

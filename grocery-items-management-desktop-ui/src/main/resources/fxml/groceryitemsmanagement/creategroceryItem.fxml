@@ -18,7 +18,7 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" focusTraversable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="324.0" prefWidth="478.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lyess.grocery_items_management_desktop_ui.groceryitemsmanagement.CreateGroceryItemFxmlController">
+<VBox alignment="CENTER" focusTraversable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="324.0" prefWidth="478.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.github.lyes_sefiane.grocery_items_management_desktop_ui.groceryitemsmanagement.CreateGroceryItemFxmlController">
    <children>
       <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="52.0" prefWidth="267.0" text="Create Grocery Item">
          <textFill>
