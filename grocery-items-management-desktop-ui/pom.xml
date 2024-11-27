@@ -114,6 +114,7 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
 					<mainClass>io.github.lyes_sefiane.grocery_items_management_desktop_ui.GroceryItemsManagementDesktopUiApplication</mainClass>
+					<finalName>grocery-items-management-desktop-ui</finalName>
 				</configuration>
 				<executions>
 					<execution>
