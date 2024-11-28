@@ -7,7 +7,7 @@ name: Docker Build & Publish
 
 on:
   push:
-    branches: ["main", "develop", "feature/"]
+    branches: ["main", "develop", "feature/*"]
   release:
     types:
       - published
