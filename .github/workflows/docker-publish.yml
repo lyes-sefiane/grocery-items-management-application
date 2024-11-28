@@ -63,10 +63,8 @@ jobs:
           distribution: 'temurin'
           cache: maven
 
-      - name: Change Directory to 'grocery-items-management'
-        working-directory: grocery-items-management
-
       - name: Build With Maven
+        working-directory: ./grocery-items-management
         run: mvn clean install -DskipTests
 
       - name: Upload 'grocery-items-management.jar' Artifact
