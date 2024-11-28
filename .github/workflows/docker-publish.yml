@@ -64,14 +64,14 @@ jobs:
           cache: maven
 
       - name: Build With Maven
-        working-directory: ./grocery-items-management
+        #working-directory: ./grocery-items-management
         run: mvn clean install -DskipTests
 
       - name: Upload 'grocery-items-management.jar' Artifact
         uses: actions/upload-artifact@v4
         with:
           name: grocery-items-management
-          path: grocery-items-management/target/*.jar
+          path: ./grocery-items-management/target/*.jar
           compression-level: 0
           overwrite: true
 
