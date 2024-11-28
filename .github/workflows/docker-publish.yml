@@ -55,6 +55,8 @@ jobs:
     steps:
       - name: Checkout on API-Gateway Repository
         uses: actions/checkout@v4
+        with:
+          path: grocery-items-management
 
       - name: Set up JDK 17
         uses: actions/setup-java@v4
@@ -70,12 +72,6 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: grocery-items-management
-          path: grocery-items-management/target/*.jar
+          path: target/*.jar
           compression-level: 0
           overwrite: true
-
-      - name: Publish to GitHub Packages Apache Maven
-        #if: github.event.action == 'published'
-        run: mvn deploy -DskipTests -Dfile=grocery-items-management-desktop-ui/target/grocery-items-management-desktop-ui.jar
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
