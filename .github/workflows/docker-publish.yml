@@ -1,7 +1,7 @@
-# author  : Lyes Sefiane
-# email   : lyes.sefiane@gmail.com
-# GitHub  : https://github.com/lyes-sefiane
-# Website : https://lyes-sefiane.web.app/
+# @author  : 'Lyes Sefiane'
+# @email   : 'lyes.sefiane@gmail.com'
+# @GitHub  : 'https://github.com/lyes-sefiane'
+# @Website : 'https://lyes-sefiane.web.app/'
 
 name: Docker Build & Publish
 
@@ -69,13 +69,7 @@ jobs:
       - name: Upload 'grocery-items-management.jar' Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: api-gateway
-          path: $GITHUB_WORKSPACE/grocery-items-management/target/grocery-items-management.jar
+          name: grocery-items-management
+          path: $GITHUB_WORKSPACE/grocery-items-management/target/*.jar
           compression-level: 0
           overwrite: true
-
-      - name: Publish to GitHub Packages Apache Maven
-        #if: github.event.action == 'published'
-        run: mvn deploy -DskipTests -Dfile=$GITHUB_WORKSPACE/grocery-items-management-desktop-ui/target/grocery-items-management-desktop-ui.jar
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
