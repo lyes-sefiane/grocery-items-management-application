@@ -38,7 +38,7 @@ jobs:
       security-events: write
       actions: read
     runs-on: ubuntu-latest
-    needs: [sonar-cloud-analysis]
+    needs: [ sonar-cloud-analysis ]
     steps:
       - uses: actions/checkout@master
       - name: Run Snyk to check for vulnerabilities
@@ -51,7 +51,7 @@ jobs:
           args: --severity-threshold=low
   maven-build:
     runs-on: ubuntu-latest
-    needs: [snyk-maven-analysis]
+    needs: [ snyk-maven-analysis ]
     steps:
       - name: Checkout on Grocery Items Management
         uses: actions/checkout@v4
@@ -64,7 +64,7 @@ jobs:
           cache: maven
 
       - name: Change Directory to 'grocery-items-management'
-        run : cd grocery-items-management
+        run: cd ./grocery-items-management
 
       - name: Build With Maven
         run: mvn clean install -DskipTests
