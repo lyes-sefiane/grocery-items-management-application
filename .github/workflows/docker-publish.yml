@@ -64,7 +64,8 @@ jobs:
           cache: maven
 
       - name: Change Directory to 'grocery-items-management'
-        run: cd ./grocery-items-management
+        working-directory: grocery-items-management
+        run: ls -R grocery-items-management
 
       - name: Build With Maven
         run: mvn clean install -DskipTests
