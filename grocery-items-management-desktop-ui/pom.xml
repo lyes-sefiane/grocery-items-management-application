@@ -40,6 +40,14 @@
 		<url>https://github.com/lyes-sefiane/grocery-items-management-application</url>
 	</scm>
 
+	<distributionManagement>
+		<repository>
+			<id>github</id>
+			<name>GitHub Lyes Sefiane Apache Maven Packages</name>
+			<url>https://maven.pkg.github.com/lyes-sefiane/grocery-items-management-application</url>
+		</repository>
+	</distributionManagement>
+
 	<properties>
 		<java.version>17</java.version>
 		<javafx.version>22.0.2</javafx.version>

@@ -74,3 +74,10 @@ jobs:
           path: grocery-items-management/target/*.jar
           compression-level: 0
           overwrite: true
+
+      - name: Publish to GitHub Packages Apache Maven
+        #if: github.event.action == 'published'
+        working-directory: ./grocery-items-management-desktop-ui
+        run: mvn deploy -s $GITHUB_WORKSPACE/settings.xml
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
