@@ -70,7 +70,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: api-gateway
-          path: $GITHUB_WORKSPACE/grocery-items-management/target/api-gateway.jar
+          path: $GITHUB_WORKSPACE/grocery-items-management/target/grocery-items-management.jar
           compression-level: 0
           overwrite: true
 
