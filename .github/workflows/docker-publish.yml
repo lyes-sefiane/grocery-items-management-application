@@ -75,6 +75,14 @@ jobs:
           compression-level: 0
           overwrite: true
 
+      - name: Upload 'grocery-items-management-desktop-ui.jar' Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: grocery-items-management
+          path: ./grocery-items-management-desktop-ui/target/*.jar
+          compression-level: 0
+          overwrite: true
+
       - name: Publish to GitHub Packages Apache Maven
         #if: github.event.action == 'published'
         working-directory: ./grocery-items-management-desktop-ui
