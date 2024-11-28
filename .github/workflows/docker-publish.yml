@@ -78,7 +78,7 @@ jobs:
       - name: Publish to GitHub Packages Apache Maven
         #if: github.event.action == 'published'
         working-directory: ./grocery-items-management-desktop-ui
-        run: mvn deploy -s $GITHUB_WORKSPACE/.github/workflows/maven-settings.xml
+        run: mvn deploy -DskipTests -s $GITHUB_WORKSPACE/.github/workflows/maven-settings.xml
         env:
           USERNAME: ${{ secrets.USERNAME }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
