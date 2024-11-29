@@ -15,7 +15,7 @@ on:
 env:
   REGISTRY: docker.io
   IMAGE_NAME: ${{ secrets.IMAGE_NAME }}
-  BRANCH_TAG: ${{ github.head_ref || github.ref_name }}
+  BRANCH_TAG: test #${{ github.head_ref || github.ref_name }}
   LATEST_TAG: latest
   SHA_TAG: sha-${{ github.sha }}
 
