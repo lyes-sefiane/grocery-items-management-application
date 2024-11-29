@@ -78,7 +78,7 @@ jobs:
       - name: Upload 'grocery-items-management-desktop-ui.jar' Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: grocery-items-management
+          name: grocery-items-management-desktop-ui
           path: ./grocery-items-management-desktop-ui/target/*.jar
           compression-level: 0
           overwrite: true
