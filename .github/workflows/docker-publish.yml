@@ -2,12 +2,13 @@
 # @email   : 'lyes.sefiane@gmail.com'
 # @GitHub  : 'https://github.com/lyes-sefiane'
 # @Website : 'https://lyes-sefiane.web.app/'
+# @Since   : '2024-12-01'
 
 name: Docker Build & Publish
 
 on:
   push:
-    branches: ["main", "develop", "feature/*"]
+    branches: ["main", "develop"]
   release:
     types:
       - published
@@ -15,7 +16,7 @@ on:
 env:
   REGISTRY: docker.io
   IMAGE_NAME: ${{ secrets.IMAGE_NAME }}
-  BRANCH_TAG: test #${{ github.head_ref || github.ref_name }}
+  BRANCH_TAG: ${{ github.head_ref || github.ref_name }}
   LATEST_TAG: latest
   SHA_TAG: sha-${{ github.sha }}
 
@@ -64,7 +65,6 @@ jobs:
           cache: maven
 
       - name: Build With Maven
-        #working-directory: ./grocery-items-management
         run: mvn clean install -DskipTests
 
       - name: Upload 'grocery-items-management.jar' Artifact
