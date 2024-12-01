@@ -15,7 +15,7 @@
                 </repository>
                 <repository>
                     <id>github</id>
-                    <url>https://maven.pkg.github.com/lyes-sefiane/exception-response</url>
+                    <url>https://maven.pkg.github.com/lyes-sefiane/grocery-items-management-application</url>
                     <snapshots>
                         <enabled>true</enabled>
                     </snapshots>
