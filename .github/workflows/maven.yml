@@ -63,6 +63,6 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: grocery-items-management
-        path: grocery-items-management/target/grocery-items-management.jar
+        path: target/grocery-items-management.jar
         compression-level: 0
         overwrite: true
