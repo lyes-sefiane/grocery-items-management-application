@@ -15,11 +15,13 @@
 
 ## Documentation
 
-- TODO
+- [Grocery Items Management GitHub Wiki Documentation](https://github.com/lyes-sefiane/grocery-items-management/wiki)
 
 ## Infrastructure
 
-- TODO
+<p>
+<img src="https://raw.githubusercontent.com/wiki/lyes-sefiane/grocery-items-management-application/images/grocery-items-management-application-infrastructure.PNG" width="100%" alt="https://github.com/lyes-sefiane/grocery-items-management-application/wiki">
+</p>
 
 ## Requirements
 
@@ -39,7 +41,7 @@
 
 ## OpenApi / Swagger 
 
-- TODO
+- [Grocery Items Management API Documentation with Swagger UI](https://lyes-sefiane.github.io/grocery-items-management/)
 
 # Contributing
 
