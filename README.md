@@ -45,6 +45,7 @@
 ## Requirements
 
 ```bash
+
 1. Java 17.x.y
 
 2. Spring Framework 6.x.y
@@ -52,6 +53,7 @@
 3. Docker 3.x.y
 
 4. Maven 3.x.y
+
 ```
 
 ## Deployment
