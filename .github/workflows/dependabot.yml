@@ -1,0 +1,16 @@
+# @author  : 'Lyes Sefiane'
+# @email   : 'lyes.sefiane@gmail.com'
+# @GitHub  : 'https://github.com/lyes-sefiane'
+# @Website : 'https://lyes-sefiane.web.app/'
+# @Since   : '2024-12-05'
+
+version: 2
+updates:
+  - package-ecosystem: "maven"
+    directory: "/"
+    target-branch: "main"
+    open-pull-requests-limit: 10
+    schedule:
+      interval: "weekly"
+    assignees:
+      - "lyes-sefiane"
