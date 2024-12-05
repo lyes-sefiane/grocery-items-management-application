@@ -17,7 +17,7 @@
 
 - [Grocery Items Management GitHub Wiki Documentation](https://github.com/lyes-sefiane/grocery-items-management/wiki)
 
-## Infrastructure
+## Microservices Infrastructure
 
 <p>
 <img src="https://raw.githubusercontent.com/wiki/lyes-sefiane/grocery-items-management-application/images/grocery-items-management-application-infrastructure.PNG" width="100%" alt="https://github.com/lyes-sefiane/grocery-items-management-application/wiki">
@@ -37,7 +37,7 @@
 
 ## Deployment
 
-- TODO
+- [Grocery Items Management Microservices Deployment](https://github.com/lyes-sefiane/deployments/tree/main/grocery-items-management-microservices-deployment)
 
 ## OpenApi / Swagger 
 
