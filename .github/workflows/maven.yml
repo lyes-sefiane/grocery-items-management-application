@@ -8,7 +8,7 @@ name: Continuous Integration with GitHub Actions
 
 on:
   push:
-    branches: [ "features" , "feature/*", "bugfix/*", "hotfix/*", "main" ]
+    branches: [ "features" , "feature/*", "bugfix/*", "hotfix/*" ]
 
 jobs:
   sonar-cloud-analysis:
